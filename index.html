@@ -3,66 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>$OwlCat Swap</title>
-  <script src='https://terminal.jup.ag/main-v3.js'></script>
   <style>
-    body {
+    /* Reset some basic styles */
+    body, html, h1 {
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
+    }
+
+    /* Set dark theme background and text color */
+    body {
       background-color: #121212;
       color: #ffffff;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
       flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
     }
 
+    /* Header styling */
     h1 {
-      text-align: center;
+      font-size: 2.5rem;
       margin-bottom: 20px;
+      color: #ffcc00; /* Bright header color */
     }
 
-    button {
-      background-color: #00adb5;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    button:hover {
-      background-color: #007f80;
-    }
-
-    #jupiter-swap {
-      margin-top: 20px;
+    /* Container for the Jupiter Swap Widget */
+    #swap-container {
       width: 100%;
-      max-width: 800px;
-      height: 500px;
-      background-color: #1e1e1e; /* Dark background behind dApp */
-      border-radius: 10px;
-      padding: 20px;
-      display: none; /* Initially hide the swap interface */
+      max-width: 600px; /* Limit the width on larger screens */
+      padding: 10px;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Responsive adjustments for smaller devices */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
 <body>
 
+  <!-- Page Header -->
   <h1>$OwlCat Swap</h1>
 
-  <button id="start-app">Start App</button>
-
-  <div id="jupiter-swap"></div>
-
-  <script>
-    document.getElementById('start-app').addEventListener('click', function() {
-      document.getElementById('jupiter-swap').style.display = 'block'; // Show the swap interface
-
+  <!-- Jupiter Swap Widget -->
+  <div id="swap-container">
+    <script src="https://terminal.jup.ag/main-v3.js"></script>
+    <script>
       window.Jupiter.init({
         endpoint: "https://solana-mainnet.g.alchemy.com/v2/D9lgkN22uf1z7f_4Kvs5tQYawvzUtLy9",
         formProps: {
@@ -73,8 +66,8 @@
           initialSlippageBps: 0,
         },
       });
-    });
-  </script>
+    </script>
+  </div>
 
 </body>
 </html>
