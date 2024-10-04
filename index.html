@@ -7,69 +7,53 @@
   <title>$OwlCat Swap</title>
   <style>
     /* Reset some basic styles */
-    body, html {
+    body, html, h1 {
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
-      height: 100%;
-      overflow-x: hidden; /* Prevent horizontal scroll */
     }
 
     /* Set dark theme background and text color */
     body {
       background-color: #121212;
       color: #ffffff;
-    }
-
-    /* Fixed header styling */
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background-color: #1c1c1c;
-      padding: 10px;
-      text-align: center;
-      z-index: 10;
-      box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.5);
-    }
-
-    header h1 {
-      font-size: 2.5rem;
-      margin: 0;
-      color: #ffcc00;
-    }
-
-    /* Main section with padding to prevent overlap with header */
-    main {
-      padding-top: 80px; /* Space for the fixed header */
       display: flex;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
-      align-items: flex-start;
       height: 100vh;
-      overflow-y: auto; /* Enable scrolling if content overflows */
+    }
+
+    /* Header styling */
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #ffcc00; /* Bright header color */
+    }
+
+    /* Container for the Jupiter Swap Widget */
+    #swap-container {
+      width: 100%;
+      max-width: 600px; /* Limit the width on larger screens */
+      padding: 10px;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.6);
     }
 
     /* Responsive adjustments for smaller devices */
     @media (max-width: 600px) {
-      header h1 {
+      h1 {
         font-size: 2rem;
-      }
-
-      main {
-        padding-top: 100px; /* Slightly more space for smaller screens */
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Fixed Page Header -->
-  <header>
-    <h1>$OwlCat Swap</h1>
-  </header>
+  <!-- Page Header -->
+  <h1>$OwlCat Swap</h1>
 
-  <!-- Main content section where widget resides -->
-  <main>
+  <!-- Jupiter Swap Widget -->
+  <div id="swap-container">
     <script src="https://terminal.jup.ag/main-v3.js"></script>
     <script>
       window.Jupiter.init({
@@ -78,12 +62,12 @@
           fixedOutputMint: false,
           swapMode: "ExactInOut",
           initialAmount: "25000000",
-          initialOutputMint: "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+          initialOutputMint: "F6ExBzKdLRcJkCAknQgfbhRXX78EhqoNxPnegJWPpump",
           initialSlippageBps: 0,
         },
       });
     </script>
-  </main>
+  </div>
 
 </body>
 </html>
