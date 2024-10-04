@@ -3,63 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>$OwlCat Jupiter Swap</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>$OwlCat Swap</title>
+    
+    <!-- Attach the loading script in your <head /> -->
     <script src='https://terminal.jup.ag/main-v3.js'></script>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #2c2f33;
-            font-family: 'Arial', sans-serif;
-            color: #f9f9f9;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 350px; /* Reduced width for a more compact look */
-            text-align: center;
-            background-color: #36393f;
-            padding: 20px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.6);
-            border-radius: 12px;
-        }
-
-        h1 {
-            font-size: 2.5rem; /* Bigger font size for the header */
-            font-weight: bold;
-            color: white; /* White color for the header */
-            margin-bottom: 20px;
-        }
-
-        #integrated-terminal {
-            width: 100%;
-            height: 600px; /* Increased height for a taller layout */
-            border: 2px solid #555;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-
-        @media (max-width: 600px) {
-            #integrated-terminal {
-                height: 400px;
-            }
-        }
-    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>$OwlCat Jupiter Swap</h1>
-        <div id="integrated-terminal"></div>
-    </div>
+    <h1>Welcome to $OwlCat Swap</h1>
+    <p>This is an integration for the Jupiter Swap.</p>
+
     <script>
+        // Initialize Jupiter Swap with the provided settings
         window.Jupiter.init({
-            displayMode: "integrated",
-            integratedTargetId: "integrated-terminal",
-            endpoint: "https://solana-mainnet.g.alchemy.com/v2/D9lgkN22uf1z7f_4Kvs5tQYawvzUtLy9",
+            endpoint: "https://api.mainnet-beta.solana.com",
             formProps: {
                 fixedOutputMint: true,
                 swapMode: "ExactIn",
