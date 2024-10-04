@@ -3,25 +3,72 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jupiter Swap Integration</title>
+  <title>$OwlCat Swap</title>
   <script src='https://terminal.jup.ag/main-v3.js'></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #00adb5;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #007f80;
+    }
+    
+    #jupiter-swap {
+      margin-top: 20px;
+      display: none; /* Initially hide the swap interface */
+    }
+  </style>
 </head>
 <body>
-  <h1>Jupiter Swap</h1>
+
+  <h1>$OwlCat Swap</h1>
+
+  <button id="start-app">Start App</button>
 
   <div id="jupiter-swap"></div>
 
   <script>
-    window.Jupiter.init({
-      endpoint: "https://solana-mainnet.g.alchemy.com/v2/D9lgkN22uf1z7f_4Kvs5tQYawvzUtLy9",
-      formProps: {
-        fixedOutputMint: true,
-        swapMode: "ExactIn",
-        initialAmount: "25000000",
-        initialOutputMint: "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
-        initialSlippageBps: 0,
-      },
+    document.getElementById('start-app').addEventListener('click', function() {
+      document.getElementById('jupiter-swap').style.display = 'block'; // Show the swap interface
+
+      window.Jupiter.init({
+        endpoint: "https://api.mainnet-beta.solana.com",
+        formProps: {
+          fixedOutputMint: true,
+          swapMode: "ExactIn",
+          initialAmount: "25000000",
+          initialOutputMint: "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+          initialSlippageBps: 0,
+        },
+      });
     });
   </script>
+
 </body>
 </html>
