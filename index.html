@@ -9,7 +9,7 @@
     <!-- Attach the loading script in your <head /> -->
     <script src='https://terminal.jup.ag/main-v3.js'></script>
 
-    <!-- Adding some CSS for dark mode theme and centering the DApp -->
+    <!-- Adding some CSS for dark mode theme and responsive DApp centering -->
     <style>
         * {
             margin: 0;
@@ -25,8 +25,9 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
-            text-align: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 20px;
         }
 
         h1 {
@@ -50,6 +51,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-height: 200px;
         }
 
         .swap-button {
@@ -71,6 +73,7 @@
             width: 100%;
             max-width: 400px;
             margin-top: 20px;
+            overflow: hidden;
         }
 
         .footer {
@@ -88,10 +91,17 @@
         a:hover {
             text-decoration: underline;
         }
+
+        /* Ensures the container expands when DApp is loaded */
+        .swap-container.full-height {
+            min-height: 100vh;
+            justify-content: flex-start;
+        }
+
     </style>
 </head>
 <body>
-    <div class="swap-container">
+    <div class="swap-container" id="swap-container">
         <h1>Welcome to $OwlCat Swap</h1>
         <p>This is an integration for the Jupiter Swap on Solana. Press the button below to initiate the swap!</p>
 
@@ -109,6 +119,9 @@
     <script>
         // Function to initialize Jupiter Swap on button click
         function initializeSwap() {
+            // Adjust the swap-container to take the full height of the screen once DApp is initialized
+            document.getElementById('swap-container').classList.add('full-height');
+            
             // Initialize Jupiter Swap with the provided settings
             window.Jupiter.init({
                 endpoint: "https://solana-mainnet.g.alchemy.com/v2/D9lgkN22uf1z7f_4Kvs5tQYawvzUtLy9",
