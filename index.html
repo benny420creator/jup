@@ -8,23 +8,83 @@
     
     <!-- Attach the loading script in your <head /> -->
     <script src='https://terminal.jup.ag/main-v3.js'></script>
+
+    <!-- Adding some basic CSS for visual enhancement -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            color: #333;
+        }
+
+        h1 {
+            color: #6A1B9A;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .swap-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 600px;
+            width: 100%;
+            margin: 20px auto;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        /* Add a hover effect for links */
+        a {
+            color: #6A1B9A;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to $OwlCat Swap</h1>
-    <p>This is an integration for the Jupiter Swap.</p>
+    <div class="swap-container">
+        <h1>Welcome to $OwlCat Swap</h1>
+        <p>This is an integration for the Jupiter Swap on Solana. Swap tokens with ease!</p>
 
-    <script>
-        // Initialize Jupiter Swap with the provided settings
-        window.Jupiter.init({
-            endpoint: "https://api.mainnet-beta.solana.com",
-            formProps: {
-                fixedOutputMint: true,
-                swapMode: "ExactIn",
-                initialAmount: "25000000",
-                initialOutputMint: "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
-                initialSlippageBps: 0,
-            },
-        });
-    </script>
+        <script>
+            // Initialize Jupiter Swap with the provided settings
+            window.Jupiter.init({
+                endpoint: "https://solana-mainnet.g.alchemy.com/v2/D9lgkN22uf1z7f_4Kvs5tQYawvzUtLy9",
+                formProps: {
+                    fixedOutputMint: true,
+                    swapMode: "ExactIn",
+                    initialAmount: "25000000",
+                    initialOutputMint: "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+                    initialSlippageBps: 0,
+                },
+            });
+        </script>
+    </div>
+
+    <div class="footer">
+        <p>Powered by <a href="https://jup.ag" target="_blank">Jupiter Aggregator</a></p>
+    </div>
 </body>
 </html>
