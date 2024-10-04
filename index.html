@@ -18,9 +18,6 @@
     body {
       background-color: #121212;
       color: #ffffff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     }
 
     /* Fixed header styling */
@@ -41,35 +38,23 @@
       color: #ffcc00;
     }
 
-    /* Main content to prevent overlap with the fixed header */
+    /* Main section to center the widget */
     main {
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
-      width: 100%;
+      align-items: center;
+      height: 100vh;
       padding-top: 80px; /* Space for the fixed header */
-      flex-grow: 1;
     }
 
-    /* Container for the Jupiter Swap Widget */
-    #swap-container {
-      width: 100%;
-      max-width: 600px;
-      height: 80vh; /* Ensures it fits within the screen */
-      padding: 10px;
-      box-sizing: border-box;
-      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.6);
-    }
-
-    /* Responsive adjustments for smaller devices */
+    /* Jupiter widget fits full width on mobile and smaller screens */
     @media (max-width: 600px) {
       header h1 {
         font-size: 2rem;
       }
 
-      #swap-container {
-        height: 70vh; /* Adjust height for smaller screens */
+      main {
+        padding-top: 100px; /* Slightly more space for smaller screens */
       }
     }
   </style>
@@ -81,23 +66,21 @@
     <h1>$OwlCat Swap</h1>
   </header>
 
-  <!-- Main content with Swap Widget -->
+  <!-- Jupiter Swap Widget directly in main -->
   <main>
-    <div id="swap-container">
-      <script src="https://terminal.jup.ag/main-v3.js"></script>
-      <script>
-        window.Jupiter.init({
-          endpoint: "https://api.mainnet-beta.solana.com",
-          formProps: {
-            fixedOutputMint: true,
-            swapMode: "ExactIn",
-            initialAmount: "25000000",
-            initialOutputMint: "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
-            initialSlippageBps: 0,
-          },
-        });
-      </script>
-    </div>
+    <script src="https://terminal.jup.ag/main-v3.js"></script>
+    <script>
+      window.Jupiter.init({
+        endpoint: "https://api.mainnet-beta.solana.com",
+        formProps: {
+          fixedOutputMint: true,
+          swapMode: "ExactIn",
+          initialAmount: "25000000",
+          initialOutputMint: "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+          initialSlippageBps: 0,
+        },
+      });
+    </script>
   </main>
 
 </body>
