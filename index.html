@@ -1,106 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>$OwlCat Swap</title>
-    
-    <!-- Attach the loading script in your <head /> -->
-    <script src='https://terminal.jup.ag/main-v3.js'></script>
-
-    <!-- Adding some basic CSS for visual enhancement and centering the DApp -->
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f9;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            color: #333;
-        }
-
-        h1 {
-            color: #6A1B9A;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-
-        .swap-container {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            max-width: 600px;
-            width: 100%;
-            margin: 20px auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .dapp-wrapper {
-            width: 100%;
-            max-width: 400px;
-            margin-top: 20px;
-        }
-
-        .footer {
-            margin-top: 20px;
-            font-size: 0.9rem;
-            color: #888;
-        }
-
-        /* Add a hover effect for links */
-        a {
-            color: #6A1B9A;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jupiter Terminal Integration</title>
+  
+  <!-- Attach the loading script -->
+  <script src='https://terminal.jup.ag/main-v3.js'></script>
 </head>
 <body>
-    <div class="swap-container">
-        <h1>Welcome to $OwlCat Swap</h1>
-        <p>This is an integration for the Jupiter Swap on Solana. Swap tokens with ease!</p>
+  <!-- Prepare a div for Terminal to render -->
+  <div id="integrated-terminal" style="width: 400px; height: 568px;"></div>
 
-        <!-- DApp loading section -->
-        <div class="dapp-wrapper" id="jupiter-dapp"></div>
-
-        <script>
-            // Initialize Jupiter Swap with the provided settings
-            window.Jupiter.init({
-                endpoint: "https://solana-mainnet.g.alchemy.com/v2/D9lgkN22uf1z7f_4Kvs5tQYawvzUtLy9",
-                formProps: {
-                    fixedOutputMint: true,
-                    swapMode: "ExactIn",
-                    initialAmount: "25000000",
-                    initialOutputMint: "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
-                    initialSlippageBps: 0,
-                },
-                container: document.getElementById('jupiter-dapp') // This will load the DApp in the center
-            });
-        </script>
-    </div>
-
-    <div class="footer">
-        <p>Powered by <a href="https://jup.ag" target="_blank">Jupiter Aggregator</a></p>
-    </div>
+  <script>
+    window.Jupiter.init({
+      displayMode: "integrated",
+      integratedTargetId: "integrated-terminal",
+      endpoint: "https://api.mainnet-beta.solana.com",
+      formProps: {
+        fixedOutputMint: true,
+        swapMode: "ExactIn",
+        initialAmount: "25000000",
+        initialOutputMint: "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+        initialSlippageBps: 0,
+      },
+    });
+  </script>
 </body>
 </html>
