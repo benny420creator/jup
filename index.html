@@ -9,19 +9,22 @@
     <!-- Attach the loading script in your <head /> -->
     <script src='https://terminal.jup.ag/main-v3.js'></script>
 
-    <!-- Adding some basic CSS for visual enhancement -->
+    <!-- Adding some basic CSS for visual enhancement and centering the DApp -->
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
-            text-align: center;
             color: #333;
         }
 
@@ -44,6 +47,15 @@
             max-width: 600px;
             width: 100%;
             margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .dapp-wrapper {
+            width: 100%;
+            max-width: 400px;
+            margin-top: 20px;
         }
 
         .footer {
@@ -68,6 +80,9 @@
         <h1>Welcome to $OwlCat Swap</h1>
         <p>This is an integration for the Jupiter Swap on Solana. Swap tokens with ease!</p>
 
+        <!-- DApp loading section -->
+        <div class="dapp-wrapper" id="jupiter-dapp"></div>
+
         <script>
             // Initialize Jupiter Swap with the provided settings
             window.Jupiter.init({
@@ -79,6 +94,7 @@
                     initialOutputMint: "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
                     initialSlippageBps: 0,
                 },
+                container: document.getElementById('jupiter-dapp') // This will load the DApp in the center
             });
         </script>
     </div>
