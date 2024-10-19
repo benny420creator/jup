@@ -36,6 +36,7 @@
 
         .jupiter-form {
             margin-top: 20px;
+            height: 500px;
         }
     </style>
     <script src="https://terminal.jup.ag/main-v3.js"></script>
@@ -46,15 +47,18 @@
         <div id="jupiter-terminal" class="jupiter-form"></div>
     </div>
     <script>
-        window.Jupiter.init({
-            endpoint: "https://solana-mainnet.g.alchemy.com/v2/D9lgkN22uf1z7f_4Kvs5tQYawvzUtLy9",
-            formProps: {
-                fixedOutputMint: true,
-                swapMode: "ExactIn",
-                initialAmount: "25000000",
-                initialOutputMint: "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
-                initialSlippageBps: 0,
-            },
+        window.addEventListener('load', function() {
+            window.Jupiter.init({
+                endpoint: "https://solana-mainnet.g.alchemy.com/v2/D9lgkN22uf1z7f_4Kvs5tQYawvzUtLy9",
+                container: document.getElementById('jupiter-terminal'),
+                formProps: {
+                    fixedOutputMint: false,
+                    swapMode: "ExactIn",
+                    initialAmount: "25000000",
+                    initialOutputMint: "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+                    initialSlippageBps: 0,
+                },
+            });
         });
     </script>
 </body>
