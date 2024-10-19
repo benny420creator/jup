@@ -12,6 +12,7 @@
       padding: 0;
       font-family: Arial, sans-serif;
       height: 100%;
+      overflow: hidden; /* Prevent background scrolling */
     }
 
     /* Set dark theme background and text color */
@@ -45,6 +46,12 @@
       align-items: center;
       height: 100vh;
       padding-top: 80px; /* Space for the fixed header */
+      pointer-events: none; /* Prevent clicking on the background */
+    }
+
+    #jupiter-terminal {
+      pointer-events: all; /* Allow interaction with the terminal */
+      z-index: 20;
     }
 
     /* Jupiter widget fits full width on mobile and smaller screens */
@@ -87,4 +94,3 @@
 
 </body>
 </html>
-
