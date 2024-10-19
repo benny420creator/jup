@@ -22,10 +22,13 @@
     }
     /* Header styling, fixed at the top */
     header {
+      position: sticky;
+      top: 0;
       background-color: #1c1c1c;
       padding: 10px;
       text-align: center;
       box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.5);
+      z-index: 1000;
     }
     header h1 {
       font-size: 2.5rem;
@@ -44,6 +47,12 @@
     #jupiter-terminal {
       width: 100%;
       max-width: 480px;
+    }
+    /* Ensure Jupiter terminal is always visible */
+    #jupiter-terminal > div {
+      position: relative !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
     }
     /* Jupiter widget fits full width on mobile and smaller screens */
     @media (max-width: 600px) {
@@ -66,7 +75,14 @@
   <script>
     window.addEventListener('load', function() {
       window.Jupiter.init({
+        displayMode: "modal",
         endpoint: "https://solana-mainnet.g.alchemy.com/v2/i9bOEa196Oj_Ljl6Y_uP9_YE9QGfSrGe",
+        containerStyles: {
+          pageBackground: "transparent",
+          containerBackground: "transparent",
+          containerPosition: "relative",
+        },
+        defaultExplorer: "Solscan",
         container: document.getElementById('jupiter-terminal'),
         formProps: {
           fixedOutputMint: false,
