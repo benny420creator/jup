@@ -14,70 +14,65 @@
       height: 100%;
       overflow: hidden; /* Prevent background scrolling */
     }
-
     /* Set dark theme background and text color */
     body {
       background-color: #121212;
       color: #ffffff;
     }
-
     /* Header styling, fixed at the top */
     header {
       position: fixed;
       top: 0;
-      width: 100%;
+      left: 0;
+      right: 0;
       background-color: #1c1c1c;
       padding: 10px;
       text-align: center;
       z-index: 10;
       box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.5);
     }
-
     header h1 {
       font-size: 2.5rem;
       margin: 0;
       color: #ffcc00;
     }
-
     /* Main section to center the widget */
     main {
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       padding-top: 80px; /* Space for the fixed header */
-      pointer-events: none; /* Prevent clicking on the background */
+      box-sizing: border-box;
     }
-
     #jupiter-terminal {
-      pointer-events: all; /* Allow interaction with the terminal */
-      z-index: 20;
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
     }
-
     /* Jupiter widget fits full width on mobile and smaller screens */
     @media (max-width: 600px) {
       header h1 {
         font-size: 2rem;
       }
-
       main {
-        padding-top: 100px; /* Slightly more space for smaller screens */
+        padding-top: 70px; /* Adjusted space for smaller screens */
       }
     }
   </style>
 </head>
 <body>
-
   <!-- Fixed Page Header -->
-  <header id="header">
+  <header>
     <h1>$OwlCat Swap</h1>
   </header>
-
   <!-- Jupiter Swap Widget directly in main -->
   <main>
     <div id="jupiter-terminal"></div>
-    <script src="https://terminal.jup.ag/main-v3.js"></script>
-    <script>
+  </main>
+  <script src="https://terminal.jup.ag/main-v3.js"></script>
+  <script>
+    window.addEventListener('load', function() {
       window.Jupiter.init({
         endpoint: "https://solana-mainnet.g.alchemy.com/v2/i9bOEa196Oj_Ljl6Y_uP9_YE9QGfSrGe",
         container: document.getElementById('jupiter-terminal'),
@@ -89,8 +84,7 @@
           initialSlippageBps: 0,
         },
       });
-    </script>
-  </main>
-
+    });
+  </script>
 </body>
 </html>
