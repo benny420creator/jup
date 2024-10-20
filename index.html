@@ -1,98 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>$OwlCat Swap</title>
-  <style>
-    /* Reset some basic styles */
-    body, html {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      height: 100%;
-    }
-    /* Set dark theme background and text color */
-    body {
-      background-color: #121212;
-      color: #ffffff;
-      display: flex;
-      flex-direction: column;
-    }
-    /* Header styling, fixed at the top */
-    header {
-      position: sticky;
-      top: 0;
-      background-color: #1c1c1c;
-      padding: 10px;
-      text-align: center;
-      box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.5);
-      z-index: 1000;
-    }
-    header h1 {
-      font-size: 2.5rem;
-      margin: 0;
-      color: #ffcc00;
-    }
-    /* Main section to center the widget */
-    main {
-      flex-grow: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      box-sizing: border-box;
-    }
-    #jupiter-terminal {
-      width: 100%;
-      max-width: 480px;
-    }
-    /* Ensure Jupiter terminal is always visible */
-    #jupiter-terminal > div {
-      position: relative !important;
-      visibility: visible !important;
-      pointer-events: auto !important;
-    }
-    /* Jupiter widget fits full width on mobile and smaller screens */
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2rem;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$OwlCat Swap</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src='https://terminal.jup.ag/main-v3.js'></script>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        #theme-toggle {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            padding: 10px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: inherit;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .dark {
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        .light {
+            background-color: #f0f0f0;
+            color: #000000;
+        }
+
+        .swap-app {
+            margin-top: 20px;
+        }
+    </style>
 </head>
-<body>
-  <!-- Page Header -->
-  <header>
-    <h1>$OwlCat Swap</h1>
-  </header>
-  <!-- Jupiter Swap Widget directly in main -->
-  <main>
-    <div id="jupiter-terminal"></div>
-  </main>
-  <script src="https://terminal.jup.ag/main-v3.js"></script>
-  <script>
-    window.addEventListener('load', function() {
-      window.Jupiter.init({
-        displayMode: "modal",
-        endpoint: "https://flashy-late-replica.solana-mainnet.quiknode.pro/b709a0ffc5173931aa55281fce97de6fb9c8094a",
-        containerStyles: {
-          pageBackground: "transparent",
-          containerBackground: "transparent",
-          containerPosition: "relative",
-        },
-        defaultExplorer: "Solscan",
-        container: document.getElementById('jupiter-terminal'),
-        formProps: {
-          fixedOutputMint: false,
-          swapMode: "ExactIn",
-          initialAmount: "25000000",
-          initialOutputMint: "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
-          initialSlippageBps: 0,
-        },
-      });
-    });
-  </script>
+<body class="dark">
+    <button id="theme-toggle"><i class="fas fa-sun"></i></button>
+    <div class="container">
+        <h1>$OwlCat Swap</h1>
+        <div id="swap-app" class="swap-app"></div>
+        <p>Created using the Jupiter Terminal</p>
+    </div>
+    <div class="footer">&copy; 2024 Benny420Creator Inc.</div>
+
+    <script>
+        // Initialize Jupiter Terminal Swap App
+        window.Jupiter.init({
+            endpoint: "https://flashy-late-replica.solana-mainnet.quiknode.pro/b709a0ffc5173931aa55281fce97de6fb9c8094a",
+            containerId: "swap-app",
+        });
+
+        // Theme Toggle
+        const themeToggle = document.getElementById("theme-toggle");
+        const body = document.body;
+        
+        themeToggle.addEventListener("click", () => {
+            if (body.classList.contains("dark")) {
+                body.classList.remove("dark");
+                body.classList.add("light");
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                body.classList.remove("light");
+                body.classList.add("dark");
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        });
+    </script>
 </body>
 </html>
