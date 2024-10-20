@@ -60,16 +60,32 @@
     <button id="theme-toggle"><i class="fas fa-sun"></i></button>
     <div class="container">
         <h1>$OwlCat Swap</h1>
+        <button id="show-terminal">Show Swap Terminal</button>
         <p>Created using the Jupiter Terminal</p>
-        <div id="swap-app" class="swap-app"></div>
+        <div id="swap-app" class="swap-app" style="display: none;"></div>
     </div>
     <div class="footer">&copy; 2024 Benny420Creator Inc.</div>
 
     <script>
         // Initialize Jupiter Terminal Swap App
-        window.Jupiter.init({
-            endpoint: "https://flashy-late-replica.solana-mainnet.quiknode.pro/b709a0ffc5173931aa55281fce97de6fb9c8094a",
-            containerId: "swap-app",
+        function initializeTerminal() {
+            window.Jupiter.init({
+                endpoint: "https://flashy-late-replica.solana-mainnet.quiknode.pro/b709a0ffc5173931aa55281fce97de6fb9c8094a",
+                containerId: "swap-app",
+            });
+        }
+
+        // Show Terminal Button
+        const showTerminalButton = document.getElementById("show-terminal");
+        const swapApp = document.getElementById("swap-app");
+
+        showTerminalButton.addEventListener("click", () => {
+            if (swapApp.style.display === "none") {
+                swapApp.style.display = "block";
+                initializeTerminal();
+            } else {
+                swapApp.style.display = "none";
+            }
         });
 
         // Theme Toggle
