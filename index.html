@@ -3,96 +3,88 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>$OwlCat Swap</title>
+  <title>Modal Terminal - GitHub Pages Version</title>
   <style>
-    /* Reset some basic styles */
-    body, html {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      height: 100%;
-    }
-    /* Set dark theme background and text color */
-    body {
-      background-color: #121212;
-      color: #ffffff;
+    .launch-terminal-container {
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      cursor: pointer;
       display: flex;
+      height: 100vh;
+      width: 100vw;
       flex-direction: column;
-    }
-    /* Header styling, fixed at the top */
-    header {
-      position: sticky;
-      top: 0;
-      background-color: #1c1c1c;
-      padding: 10px;
-      text-align: center;
-      box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.5);
-      z-index: 1000;
-    }
-    header h1 {
-      font-size: 2.5rem;
-      margin: 0;
-      color: #ffcc00;
-    }
-    /* Main section to center the widget */
-    main {
-      flex-grow: 1;
-      display: flex;
-      justify-content: center;
       align-items: center;
-      padding: 20px;
-      box-sizing: border-box;
+      justify-content: center;
+      color: white;
+      text-align: center;
     }
-    #jupiter-terminal {
-      width: 100%;
-      max-width: 480px;
+    .launch-terminal-container:hover {
+      background: rgba(255, 255, 255, 0.2);
     }
-    /* Ensure Jupiter terminal is always visible */
-    #jupiter-terminal > div {
-      position: relative !important;
-      visibility: visible !important;
-      pointer-events: auto !important;
-    }
-    /* Jupiter widget fits full width on mobile and smaller screens */
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2rem;
-      }
+    .wallet-icon {
+      width: 50px;
+      height: 50px;
+      background-color: lightgray; /* Placeholder style */
+      border-radius: 50%;
+      margin-bottom: 16px;
     }
   </style>
+  <script src="https://cdn.jup.ag/your-library.js"></script> <!-- Replace with the actual Jupiter library link -->
 </head>
-<body>
-  <!-- Page Header -->
-  <header>
-    <h1>$OwlCat Swap</h1>
-  </header>
-  <!-- Jupiter Swap Widget directly in main -->
-  <main>
-    <div id="jupiter-terminal"></div>
-  </main>
-  <script src="https://terminal.jup.ag/main-v3.js"></script>
+<body style="background: #282c34; color: #ffffff; font-family: Arial, sans-serif;">
+
+  <div id="launch-terminal" class="launch-terminal-container">
+    <div class="wallet-icon"></div> <!-- Placeholder for WalletDisconnectedGraphic -->
+    <span>Launch Terminal Modal</span>
+  </div>
+
   <script>
-    window.addEventListener('load', function() {
-      window.Jupiter.init({
-        displayMode: "modal",
-        endpoint: "https://flashy-late-replica.solana-mainnet.quiknode.pro/b709a0ffc5173931aa55281fce97de6fb9c8094a",
-        containerStyles: {
-          pageBackground: "transparent",
-          containerBackground: "transparent",
-          containerPosition: "relative",
-        },
-        defaultExplorer: "Solscan",
-        container: document.getElementById('jupiter-terminal'),
-        formProps: {
-          fixedOutputMint: false,
-          swapMode: "ExactIn",
-          initialAmount: "25000000",
-          initialOutputMint: "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
-          initialSlippageBps: 0,
-        },
-      });
+    document.addEventListener("DOMContentLoaded", function() {
+      const launchTerminalElement = document.getElementById("launch-terminal");
+
+      const rpcUrl = "https://flashy-late-replica.solana-mainnet.quiknode.pro/b709a0ffc5173931aa55281fce97de6fb9c8094a"; // Replace with actual RPC URL
+      const formProps = {}; // Replace with the necessary form props
+      const simulateWalletPassthrough = true; // Set according to your requirement
+      const strictTokenList = true; // Set according to your requirement
+      const defaultExplorer = "DEFAULT_EXPLORER"; // Replace with actual explorer
+      const useUserSlippage = true; // Set according to your requirement
+      const refetchIntervalForTokenAccounts = 5000; // Replace with desired interval
+
+      const passthroughWalletContextState = {}; // Placeholder for wallet context state
+
+      function launchTerminal() {
+        if (window.Jupiter && window.Jupiter.init) {
+          window.Jupiter.init({
+            endpoint: rpcUrl,
+            refetchIntervalForTokenAccounts,
+            formProps,
+            enableWalletPassthrough: simulateWalletPassthrough,
+            passthroughWalletContextState: simulateWalletPassthrough ? passthroughWalletContextState : undefined,
+            onRequestConnectWallet: () => alert("Request to connect wallet"),
+            strictTokenList,
+            defaultExplorer,
+            useUserSlippage,
+          });
+        } else {
+          console.error("Jupiter library is not loaded.");
+        }
+      }
+
+      // Sync props if Jupiter is available
+      function syncJupiterProps() {
+        if (window.Jupiter && window.Jupiter.syncProps) {
+          window.Jupiter.syncProps({ passthroughWalletContextState });
+        }
+      }
+
+      // Attach event listeners
+      launchTerminalElement.addEventListener("click", launchTerminal);
+
+      // Sync props after the page has loaded
+      window.addEventListener("load", syncJupiterProps);
     });
   </script>
+
 </body>
 </html>
