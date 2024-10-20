@@ -72,6 +72,9 @@
             margin: 20px auto;
             width: 100%;
             max-width: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 </head>
@@ -100,7 +103,7 @@
 
         showTerminalButton.addEventListener("click", () => {
             if (swapApp.style.display === "none") {
-                swapApp.style.display = "block";
+                swapApp.style.display = "flex";
                 initializeTerminal();
             } else {
                 swapApp.style.display = "none";
