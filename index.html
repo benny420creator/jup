@@ -34,6 +34,23 @@
             color: inherit;
         }
 
+        #show-terminal {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 25px;
+            background-color: #007BFF;
+            color: #ffffff;
+            cursor: pointer;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        #show-terminal:hover {
+            background-color: #0056b3;
+            box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
         .footer {
             position: fixed;
             bottom: 10px;
@@ -52,7 +69,9 @@
         }
 
         .swap-app {
-            margin: 20px 0;
+            margin: 20px auto;
+            width: 100%;
+            max-width: 600px;
         }
     </style>
 </head>
