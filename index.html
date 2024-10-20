@@ -7,87 +7,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src='https://terminal.jup.ag/main-v3.js'></script>
     <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            transition: background-color 0.3s, color 0.3s;
-            padding: 10px;
-            box-sizing: border-box;
-        }
+        /* ... (previous styles remain the same) ... */
 
-        .container {
-            text-align: center;
-            width: 100%;
-            max-width: 600px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        #theme-toggle {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            padding: 10px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            font-size: 18px;
-            color: inherit;
-        }
-
-        #show-terminal {
-            padding: 15px 30px;
-            font-size: 18px;
-            border: none;
-            border-radius: 25px;
-            background-color: #007BFF;
-            color: #ffffff;
-            cursor: pointer;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s, box-shadow 0.3s;
-            width: 100%;
-            max-width: 300px;
-        }
-
-        #show-terminal:hover {
-            background-color: #0056b3;
-            box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        .footer {
-            margin-top: 20px;
-            text-align: center;
-            font-size: 14px;
-        }
-
-        .dark {
-            background-color: #121212;
-            color: #ffffff;
-        }
-
-        .light {
-            background-color: #f0f0f0;
-            color: #000000;
-        }
-
-        #swap-app {
-            margin: 20px 0;
-            width: 100%;
-            max-width: 600px;
-            display: none;
-            justify-content: center;
-            align-items: center;
-        }
-
-        #swap-app > div {
-            width: 100%;
-            max-width: 600px;
+        #error-message {
+            color: red;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -98,17 +22,27 @@
         <button id="show-terminal">Start Swap App</button>
         <p>Created using the Jupiter Terminal</p>
         <div id="swap-app"></div>
+        <div id="error-message"></div>
     </div>
     <div class="footer">&copy; 2024 Benny420Creator Inc.</div>
 
     <script>
         // Initialize Jupiter Terminal Swap App
         function initializeTerminal() {
-            window.Jupiter.init({
-                endpoint: "https://flashy-late-replica.solana-mainnet.quiknode.pro/b709a0ffc5173931aa55281fce97de6fb9c8094a",
-                containerId: "swap-app",
-                displayMode: "integrated",  // This ensures the terminal fits within its container
-            });
+            try {
+                if (typeof window.Jupiter === 'undefined') {
+                    throw new Error('Jupiter object is not defined. The script may not have loaded correctly.');
+                }
+                window.Jupiter.init({
+                    displayMode: "modal",
+                    containerSelector: "#swap-app",
+                    integratedTargetId: "swap-app",
+                });
+                console.log('Jupiter Terminal initialized successfully');
+            } catch (error) {
+                console.error('Error initializing Jupiter Terminal:', error);
+                document.getElementById('error-message').textContent = 'Error initializing swap app. Please check the console for details.';
+            }
         }
 
         // Show Terminal Button
@@ -116,7 +50,8 @@
         const swapApp = document.getElementById("swap-app");
 
         showTerminalButton.addEventListener("click", () => {
-            if (swapApp.style.display === "none") {
+            console.log('Show terminal button clicked');
+            if (swapApp.style.display === "none" || swapApp.style.display === "") {
                 swapApp.style.display = "flex";
                 initializeTerminal();
             } else {
@@ -137,6 +72,16 @@
                 body.classList.remove("light");
                 body.classList.add("dark");
                 themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        });
+
+        // Check if Jupiter script loaded
+        window.addEventListener('load', () => {
+            if (typeof window.Jupiter === 'undefined') {
+                console.error('Jupiter script did not load properly');
+                document.getElementById('error-message').textContent = 'Error loading swap app. Please check your internet connection and try again.';
+            } else {
+                console.log('Jupiter script loaded successfully');
             }
         });
     </script>
