@@ -68,13 +68,21 @@
             color: #000000;
         }
 
-        .swap-app {
-            margin: 20px auto;
+        #swap-app {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             width: 100%;
             max-width: 600px;
-            display: flex;
+            display: none;
             align-items: center;
             justify-content: center;
+            flex-direction: column;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
@@ -82,9 +90,9 @@
     <button id="theme-toggle"><i class="fas fa-sun"></i></button>
     <div class="container">
         <h1>$OwlCat Swap</h1>
-        <button id="show-terminal">Show Swap Terminal</button>
+        <button id="show-terminal">Start Swap App</button>
         <p>Created using the Jupiter Terminal</p>
-        <div id="swap-app" class="swap-app" style="display: none;"></div>
+        <div id="swap-app"></div>
     </div>
     <div class="footer">&copy; 2024 Benny420Creator Inc.</div>
 
