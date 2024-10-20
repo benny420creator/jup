@@ -24,6 +24,9 @@
             text-align: center;
             width: 100%;
             max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         #theme-toggle {
@@ -78,8 +81,13 @@
             width: 100%;
             max-width: 600px;
             display: none;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+        }
+
+        #swap-app > div {
+            width: 100%;
+            max-width: 600px;
         }
     </style>
 </head>
@@ -99,6 +107,7 @@
             window.Jupiter.init({
                 endpoint: "https://flashy-late-replica.solana-mainnet.quiknode.pro/b709a0ffc5173931aa55281fce97de6fb9c8094a",
                 containerId: "swap-app",
+                displayMode: "integrated",  // This ensures the terminal fits within its container
             });
         }
 
