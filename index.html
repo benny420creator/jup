@@ -11,7 +11,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             min-height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
@@ -57,10 +56,22 @@
             box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.15);
         }
 
+        #swap-app {
+            margin: 20px 0;
+            width: 100%;
+            max-width: 600px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
         .footer {
-            margin-top: 20px;
+            margin-top: auto;
             text-align: center;
             font-size: 14px;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
         }
 
         .dark {
@@ -71,15 +82,6 @@
         .light {
             background-color: #f0f0f0;
             color: #000000;
-        }
-
-        #swap-app {
-            margin: 20px 0;
-            width: 100%;
-            max-width: 600px;
-            display: none;
-            align-items: center;
-            justify-content: center;
         }
     </style>
 </head>
