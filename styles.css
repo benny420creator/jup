@@ -1,0 +1,132 @@
+:root {
+    --background-color: #121212;
+    --gold-color: #ffd700;
+    --text-shadow-color: #000;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--gold-color);
+    font-family: 'Comic Neue', cursive;
+    position: relative;
+    min-height: 100vh; /* Changed from height to min-height */
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('1.webp'); /* Use compressed image format */
+    background-size: cover;
+    background-position: center;
+    opacity: 0.12;
+    z-index: -1;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Ensure container fills the viewport */
+    text-align: center;
+    position: relative;
+}
+
+.opaque-container {
+    background-color: rgba(18, 18, 18, 0.8);
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 90%;
+}
+
+h1, p {
+    text-shadow:
+        -1px -1px 0 var(--text-shadow-color),
+        1px -1px 0 var(--text-shadow-color),
+        -1px 1px 0 var(--text-shadow-color),
+        1px 1px 0 var(--text-shadow-color);
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 2.5em;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+#startSwapBtn {
+    padding: 15px 30px;
+    font-size: 1em;
+    margin-bottom: 20px;
+    cursor: pointer;
+    background: linear-gradient(135deg, var(--gold-color), #b8860b);
+    border: none;
+    border-radius: 30px;
+    color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s, transform 0.3s;
+}
+
+#startSwapBtn:hover {
+    background: linear-gradient(135deg, #b8860b, var(--gold-color));
+    transform: translateY(-2px);
+}
+
+#startSwapBtn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.jupiter-terminal-modal {
+    z-index: 9999 !important;
+}
+
+.home-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    text-decoration: none;
+    color: var(--gold-color);
+    font-size: 1.2em;
+    font-weight: bold;
+    background-color: rgba(18, 18, 18, 0.7);
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition: background 0.3s;
+}
+
+.home-button:hover {
+    background-color: rgba(18, 18, 18, 0.9);
+}
+
+/* Responsive adjustments */
+@media (max-height: 600px) {
+    .opaque-container {
+        padding: 20px;
+    }
+    h1 {
+        font-size: 2em;
+    }
+    #startSwapBtn {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+}
