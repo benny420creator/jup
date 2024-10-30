@@ -67,17 +67,17 @@
     <div class="footer">
         &copy; 2024 Benny420Creator Inc.
     </div>
-    <!-- Initialize the Jupiter Terminal -->
+    <!-- Add the script at the end of the body to ensure the DOM is loaded -->
     <script>
-        // Initialize Jupiter Terminal without auto-starting
-        window.Jupiter.init({
-            endpoint: "https://solana-mainnet.g.alchemy.com/v2/i9bOEa196Oj_Ljl6Y_uP9_YE9QGfSrGe",
-            autoOpen: false, // Prevent the terminal from opening automatically
-        });
-
-        // Add event listener to the button to open the Jupiter Terminal
+        // Add event listener to the button to initialize and open the Jupiter Terminal
         document.getElementById('startSwapBtn').addEventListener('click', function() {
-            window.Jupiter.open();
+            window.Jupiter.init({
+                endpoint: "https://solana-mainnet.g.alchemy.com/v2/i9bOEa196Oj_Ljl6Y_uP9_YE9QGfSrGe",
+                // Additional configuration options can be added here
+            }).then(function() {
+                // Open the terminal after initialization is complete
+                window.Jupiter.open();
+            });
         });
     </script>
 </body>
