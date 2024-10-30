@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>$OwlCat Swap</title>
+    <title>$OwlCat Swap - Swap App</title>
     <!-- Viewport meta tag for proper scaling on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Include Google Fonts for a comic-style font -->
@@ -20,13 +20,13 @@
         html, body {
             margin: 0;
             padding: 0;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
-            overflow-y: hidden; /* Prevent vertical scrolling */
+            overflow: hidden; /* Prevent scrolling */
             height: 100%; /* Ensure the body takes full height */
         }
         body {
             background-color: #121212; /* Dark theme background */
             color: #ffd700; /* Gold text color */
+            font-family: 'Comic Neue', cursive;
             width: 100%;
             height: 100vh; /* Set body height to viewport height */
         }
@@ -44,83 +44,6 @@
             opacity: 0.12;
             z-index: -1;
         }
-        /* Container with fixed size */
-        .container {
-            width: 350px; /* Fixed width */
-            max-width: 350px; /* Enforce max width */
-            height: 550px; /* Fixed height */
-            max-height: 550px; /* Enforce max height */
-            position: absolute;
-            top: 40%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            overflow: hidden; /* Prevent the container from resizing */
-            flex-shrink: 0; /* Prevent the container from shrinking */
-            flex-grow: 0;   /* Prevent the container from growing */
-        }
-        /* Content box */
-        .opaque-container {
-            background-color: rgba(18, 18, 18, 0.8);
-            padding: 30px;
-            border-radius: 15px;
-            width: 100%;
-            box-sizing: border-box;
-            flex-shrink: 0;
-            flex-grow: 0;
-        }
-        /* Apply font and style to header, paragraph, footer, and button */
-        h1, p, .footer, #startSwapBtn, .home-button {
-            font-family: 'Comic Neue', cursive;
-            text-shadow:
-                2px 2px 0 #000,
-                -2px -2px 0 #000,
-                2px -2px 0 #000,
-                -2px 2px 0 #000,
-                0 2px 0 #000,
-                2px 0 0 #000,
-                0 -2px 0 #000,
-                -2px 0 0 #000;
-            color: #ffd700;
-        }
-        h1 {
-            margin-bottom: 40px;
-            font-size: 2.5em;
-        }
-        p {
-            font-size: 1.2em;
-        }
-        .footer {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 0.9em;
-            opacity: 0.8;
-        }
-        /* Button styling */
-        #startSwapBtn {
-            padding: 15px 30px;
-            font-size: 1em;
-            margin-bottom: 20px;
-            cursor: pointer;
-            background: linear-gradient(135deg, #ffd700, #b8860b);
-            border: none;
-            border-radius: 30px;
-            color: #fff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            transition: background 0.3s, transform 0.3s;
-        }
-        #startSwapBtn:hover {
-            background: linear-gradient(135deg, #b8860b, #ffd700);
-            transform: translateY(-2px);
-        }
-        #startSwapBtn:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
         /* Jupiter Terminal modal positioning */
         .jupiter-terminal-modal {
             position: fixed !important;
@@ -129,10 +52,6 @@
             width: 100vw !important;
             height: 100vh !important;
             z-index: 9999 !important;
-            display: none; /* Hide the modal initially */
-        }
-        .jupiter-terminal-modal.jupiter-terminal-opened {
-            display: block !important; /* Show the modal when opened */
         }
         /* Home button styling */
         .home-button {
@@ -148,7 +67,6 @@
             border-radius: 10px;
             transition: background 0.3s;
             z-index: 1000;
-            font-family: 'Comic Neue', cursive;
             text-shadow:
                 2px 2px 0 #000,
                 -2px -2px 0 #000,
@@ -166,29 +84,14 @@
 </head>
 <body>
     <!-- Home button -->
-    <a href="https://www.owlcatlab.com" class="home-button">Home</a>
-    <div class="container">
-        <!-- Content box -->
-        <div class="opaque-container">
-            <h1>$OwlCat Swap</h1>
-            <!-- Swap App button -->
-            <button id="startSwapBtn">Start Swap App</button>
-            <p>Swap Powered by <a href="https://jup.ag" target="_blank" style="color: #ffd700; text-decoration: none;">Jupiter Terminal</a></p>
-            <div class="footer">
-                &copy; 2024 Benny420Creator Inc.
-            </div>
-        </div>
-    </div>
-    <!-- Off-screen container -->
-    <div id="offscreen-container" style="position: absolute; left: -9999px;"></div>
-    <!-- Jupiter Terminal script -->
+    <a href="index.html" class="home-button">Back</a>
+    <!-- Jupiter Terminal will be opened automatically on page load -->
     <script>
-        document.getElementById('startSwapBtn').addEventListener('click', function() {
-            // Initialize Jupiter Terminal using the off-screen container
+        // Wait for the Jupiter script to load
+        document.addEventListener('DOMContentLoaded', function() {
             window.Jupiter.init({
                 endpoint: "https://solana-mainnet.g.alchemy.com/v2/i9bOEa196Oj_Ljl6Y_uP9_YE9QGfSrGe",
                 mode: "modal", // Open in modal mode
-                container: document.getElementById('offscreen-container') // Use off-screen container
             }).then(function() {
                 // Move the modal to the body
                 var modal = document.querySelector('.jupiter-terminal-modal');
