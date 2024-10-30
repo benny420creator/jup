@@ -5,6 +5,11 @@
     <title>$OwlCat Swap</title>
     <!-- Viewport meta tag for proper scaling on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include Google Fonts for a comic-style font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Use 'Bangers' font -->
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
     <!-- Include the Jupiter Terminal script -->
     <script src="https://terminal.jup.ag/main-v3.js"></script>
     <style>
@@ -68,22 +73,26 @@
             flex-shrink: 0;
             flex-grow: 0;
         }
-        h1 {
-            margin-bottom: 20px;
-            font-size: 2.5em;
+        /* Apply font and style to header, paragraph, footer, and button */
+        h1, p, .footer, #startSwapBtn, .home-button {
+            font-family: 'Bangers', cursive;
             text-shadow:
-                -1px -1px 0 #000,
-                1px -1px 0 #000,
-                -1px 1px 0 #000,
-                1px 1px 0 #000;
+                2px 2px 0 #000,
+                -2px -2px 0 #000,
+                2px -2px 0 #000,
+                -2px 2px 0 #000,
+                0 2px 0 #000,
+                2px 0 0 #000,
+                0 -2px 0 #000,
+                -2px 0 0 #000;
+            color: #ffd700;
+        }
+        h1 {
+            margin-bottom: 40px;
+            font-size: 2.5em;
         }
         p {
             font-size: 1.2em;
-            text-shadow:
-                -1px -1px 0 #000,
-                1px -1px 0 #000,
-                -1px 1px 0 #000,
-                1px 1px 0 #000;
         }
         .footer {
             text-align: center;
@@ -135,6 +144,16 @@
             border-radius: 10px;
             transition: background 0.3s;
             z-index: 1000;
+            font-family: 'Bangers', cursive;
+            text-shadow:
+                2px 2px 0 #000,
+                -2px -2px 0 #000,
+                2px -2px 0 #000,
+                -2px 2px 0 #000,
+                0 2px 0 #000,
+                2px 0 0 #000,
+                0 -2px 0 #000,
+                -2px 0 0 #000;
         }
         .home-button:hover {
             background-color: rgba(18, 18, 18, 0.9);
