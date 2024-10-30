@@ -53,6 +53,25 @@
             height: 100vh !important;
             z-index: 9999 !important;
         }
+        /* Header styling */
+        .header {
+            text-align: center;
+            padding: 20px;
+            font-size: 2em;
+            font-weight: bold;
+            color: #ffd700;
+            background-color: rgba(18, 18, 18, 0.9);
+            text-shadow:
+                2px 2px 0 #000,
+                -2px -2px 0 #000,
+                2px -2px 0 #000,
+                -2px 2px 0 #000,
+                0 2px 0 #000,
+                2px 0 0 #000,
+                0 -2px 0 #000,
+                -2px 0 0 #000;
+            z-index: 1000;
+        }
         /* Home button styling */
         .home-button {
             position: absolute;
@@ -83,8 +102,12 @@
     </style>
 </head>
 <body>
+    <!-- Header -->
+    <div class="header">$OwlCat Swap</div>
+    
     <!-- Home button -->
     <a href="https://www.OwlCatLab.com" class="home-button">Home</a>
+    
     <!-- Jupiter Terminal will be opened automatically on page load -->
     <script>
         // Wait for the Jupiter script to load
