@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>$OwlCat Swap</title>
+    <!-- Viewport meta tag for responsiveness -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Include Google Fonts for a modern comic-style font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,8 +22,8 @@
             color: #ffd700; /* Gold text color */
             font-family: 'Comic Neue', cursive;
             position: relative;
-            width: 100%;
-            height: 100vh; /* Set body height to viewport height */
+            min-width: 100%;
+            min-height: 100vh; /* Ensure minimum height covers the viewport */
         }
         /* Add the background image using a pseudo-element */
         body::before {
@@ -43,12 +45,11 @@
             align-items: center; /* Center horizontally */
             justify-content: center; /* Center vertically */
             width: 100%; /* Ensure full width */
-            height: 100%; /* Ensure full height */
+            min-height: 100vh; /* Ensure container fills at least viewport height */
             text-align: center; /* Center text inside elements */
-            position: fixed; /* Changed from relative to fixed */
-            top: 0; /* Added to fix position */
-            left: 0; /* Added to fix position */
-            z-index: 10; /* Ensures it's above background but below modal */
+            position: relative; /* Allow natural flow */
+            padding: 20px; /* Padding for small screens */
+            box-sizing: border-box; /* Include padding in width calculations */
         }
         /* Opaque container for content */
         .opaque-container {
@@ -56,6 +57,8 @@
             padding: 30px;
             border-radius: 15px;
             max-width: 90%;
+            width: 100%; /* Full width on small screens */
+            box-sizing: border-box; /* Include padding in width */
         }
         h1 {
             margin-bottom: 20px;
@@ -122,22 +125,31 @@
             padding: 10px 20px;
             border-radius: 10px;
             transition: background 0.3s;
-            z-index: 1000; /* Added z-index */
+            z-index: 1000; /* Ensure it's above other elements */
         }
         .home-button:hover {
             background-color: rgba(18, 18, 18, 0.9);
         }
         /* Responsive adjustments */
-        @media (max-height: 600px) {
-            .opaque-container {
-                padding: 20px;
-            }
+        @media (max-width: 600px) {
             h1 {
                 font-size: 2em;
+            }
+            p {
+                font-size: 1em;
             }
             #startSwapBtn {
                 padding: 10px 20px;
                 font-size: 0.9em;
+            }
+            .home-button {
+                font-size: 1em;
+                top: 10px;
+                left: 10px;
+                padding: 8px 16px;
+            }
+            .opaque-container {
+                padding: 20px;
             }
         }
     </style>
