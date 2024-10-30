@@ -5,11 +5,6 @@
     <title>$OwlCat Swap</title>
     <!-- Viewport meta tag for proper scaling on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Include Google Fonts for the 'Comic Neue' font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Use 'Comic Neue' font -->
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
     <!-- Include the Jupiter Terminal script -->
     <script src="https://terminal.jup.ag/main-v3.js"></script>
     <style>
@@ -20,13 +15,13 @@
         html, body {
             margin: 0;
             padding: 0;
-            overflow: hidden; /* Prevent scrolling */
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            overflow-y: hidden; /* Prevent vertical scrolling */
             height: 100%; /* Ensure the body takes full height */
         }
         body {
             background-color: #121212; /* Dark theme background */
             color: #ffd700; /* Gold text color */
-            font-family: 'Comic Neue', cursive;
             width: 100%;
             height: 100vh; /* Set body height to viewport height */
         }
@@ -47,6 +42,8 @@
         /* Container with fixed size */
         .container {
             width: 350px; /* Fixed width */
+            max-width: 100%; /* Prevent container from exceeding viewport width */
+            min-width: 0; /* Fix flex overflow issues */
             height: 600px; /* Fixed height */
             position: absolute;
             top: 40%;
@@ -146,7 +143,7 @@
 </head>
 <body>
     <!-- Home button -->
-    <a href="https://owlcatlab.com" class="home-button">Home</a>
+    <a href="https://www.owlcatlab.com" class="home-button">Home</a>
     <div class="container">
         <!-- Content box -->
         <div class="opaque-container">
@@ -167,6 +164,11 @@
                 endpoint: "https://solana-mainnet.g.alchemy.com/v2/i9bOEa196Oj_Ljl6Y_uP9_YE9QGfSrGe",
                 mode: "modal", // Open in modal mode
             }).then(function() {
+                // Move the modal to the body
+                var modal = document.querySelector('.jupiter-terminal-modal');
+                if (modal) {
+                    document.body.appendChild(modal);
+                }
                 window.Jupiter.open();
             });
         });
