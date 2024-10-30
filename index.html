@@ -6,20 +6,28 @@
     <!-- Include the Jupiter Terminal script over HTTPS -->
     <script src="https://terminal.jup.ag/main-v3.js"></script>
     <style>
-        html {
-            overflow-y: scroll; /* Force scrollbar to prevent layout shift */
-            scrollbar-gutter: stable; /* Reserve space for scrollbar */
-        }
-        /* Override overflow hidden when modal opens */
-        html.jupiter-modal-open {
-            overflow-y: scroll !important;
-        }
         body {
             background-color: #121212; /* Dark theme background */
             color: #ffffff; /* Text color */
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            position: relative; /* Needed for the pseudo-element */
+            overflow-y: scroll; /* Force scrollbar to prevent layout shift */
+        }
+        /* Add the background image using a pseudo-element */
+        body::before {
+            content: "";
+            position: fixed; /* Fix the background image in place */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('1.png'); /* Replace with your image path */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.12; /* Set opacity to 12% */
+            z-index: -1; /* Place behind the content */
         }
         .container {
             display: flex;
@@ -28,6 +36,8 @@
             justify-content: center; /* Center vertically */
             min-height: 100vh; /* Full viewport height */
             text-align: center; /* Center text inside elements */
+            position: relative; /* Ensure content stays above the background */
+            z-index: 1;
         }
         h1 {
             margin-bottom: 20px;
@@ -41,6 +51,8 @@
             margin-top: 40px;
             font-size: 0.9em;
             opacity: 0.6;
+            position: relative;
+            z-index: 1;
         }
         /* Modern button styling */
         #startSwapBtn {
@@ -54,6 +66,8 @@
             color: #ffffff;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
             transition: background 0.3s, transform 0.3s;
+            position: relative;
+            z-index: 1;
         }
         #startSwapBtn:hover {
             background: linear-gradient(135deg, #0099cc, #00cc99);
@@ -62,6 +76,10 @@
         #startSwapBtn:active {
             transform: translateY(0);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        /* Override overflow hidden when modal opens */
+        html.jupiter-modal-open {
+            overflow-y: scroll !important;
         }
     </style>
 </head>
@@ -82,8 +100,6 @@
             window.Jupiter.init({
                 endpoint: "https://solana-mainnet.g.alchemy.com/v2/i9bOEa196Oj_Ljl6Y_uP9_YE9QGfSrGe",
                 mode: "modal", // Open in modal mode to prevent layout shift
-                // Disable scroll lock if available
-                // scrollLock: false, // Uncomment if Jupiter Terminal supports this option
             }).then(function() {
                 // Open the terminal after initialization is complete
                 window.Jupiter.open();
