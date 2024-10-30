@@ -24,7 +24,8 @@
             font-family: 'Comic Neue', cursive;
             width: 100%;
             height: 100vh; /* Set body height to viewport height */
-            position: relative;
+            /* Remove position: relative; to prevent creating a new stacking context */
+            /* position: relative; */
         }
         /* Background image */
         body::before {
@@ -53,7 +54,8 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            z-index: 10;
+            /* Remove z-index to prevent it from overlapping the modal */
+            /* z-index: 10; */
         }
         /* Content box */
         .opaque-container {
