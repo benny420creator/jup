@@ -12,8 +12,6 @@
     <script src="https://terminal.jup.ag/main-v3.js"></script>
     <style>
         html, body {
-            /* Remove scrollbar */
-            overflow: hidden;
             margin: 0;
             padding: 0;
         }
@@ -44,9 +42,13 @@
             flex-direction: column;
             align-items: center; /* Center horizontally */
             justify-content: center; /* Center vertically */
-            height: 100%; /* Fill the entire body height */
+            width: 100%; /* Ensure full width */
+            height: 100%; /* Ensure full height */
             text-align: center; /* Center text inside elements */
-            position: relative; /* Ensure content stays above the background */
+            position: fixed; /* Changed from relative to fixed */
+            top: 0; /* Added to fix position */
+            left: 0; /* Added to fix position */
+            z-index: 10; /* Ensures it's above background but below modal */
         }
         /* Opaque container for content */
         .opaque-container {
@@ -120,6 +122,7 @@
             padding: 10px 20px;
             border-radius: 10px;
             transition: background 0.3s;
+            z-index: 1000; /* Added z-index */
         }
         .home-button:hover {
             background-color: rgba(18, 18, 18, 0.9);
