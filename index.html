@@ -6,13 +6,20 @@
     <!-- Include the Jupiter Terminal script over HTTPS -->
     <script src="https://terminal.jup.ag/main-v3.js"></script>
     <style>
+        html {
+            overflow-y: scroll; /* Force scrollbar to prevent layout shift */
+            scrollbar-gutter: stable; /* Reserve space for scrollbar */
+        }
+        /* Override overflow hidden when modal opens */
+        html.jupiter-modal-open {
+            overflow-y: scroll !important;
+        }
         body {
             background-color: #121212; /* Dark theme background */
             color: #ffffff; /* Text color */
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            overflow-y: scroll; /* Force scrollbar to prevent layout shift */
         }
         .container {
             display: flex;
@@ -75,6 +82,8 @@
             window.Jupiter.init({
                 endpoint: "https://solana-mainnet.g.alchemy.com/v2/i9bOEa196Oj_Ljl6Y_uP9_YE9QGfSrGe",
                 mode: "modal", // Open in modal mode to prevent layout shift
+                // Disable scroll lock if available
+                // scrollLock: false, // Uncomment if Jupiter Terminal supports this option
             }).then(function() {
                 // Open the terminal after initialization is complete
                 window.Jupiter.open();
