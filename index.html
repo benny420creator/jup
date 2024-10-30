@@ -16,7 +16,8 @@
         html, body {
             margin: 0;
             padding: 0;
-            overflow-y: scroll; /* Always show vertical scrollbar */
+            overflow: hidden; /* Prevent scrolling */
+            height: 100%; /* Ensure the body takes full height */
         }
         body {
             background-color: #121212; /* Dark theme background */
@@ -24,7 +25,6 @@
             font-family: 'Comic Neue', cursive;
             width: 100%;
             height: 100vh; /* Set body height to viewport height */
-            /* Remove position: relative; to prevent creating a new stacking context */
         }
         /* Background image */
         body::before {
@@ -44,7 +44,7 @@
         .container {
             width: 350px; /* Fixed width */
             height: 600px; /* Fixed height */
-            position: fixed; /* Changed from absolute to fixed */
+            position: absolute;
             top: 40%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -53,7 +53,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            /* Remove z-index to prevent it from overlapping the modal */
+            overflow: hidden; /* Prevent the container from resizing */
         }
         /* Content box */
         .opaque-container {
@@ -107,8 +107,13 @@
             transform: translateY(0);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
-        /* Jupiter Terminal modal z-index */
+        /* Jupiter Terminal modal positioning */
         .jupiter-terminal-modal {
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
             z-index: 9999 !important;
         }
         /* Home button styling */
