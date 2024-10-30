@@ -14,8 +14,12 @@
             padding: 0;
         }
         .container {
-            text-align: center; /* Center the content */
-            padding-top: 15vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center horizontally */
+            justify-content: center; /* Center vertically */
+            min-height: 100vh; /* Full viewport height */
+            text-align: center; /* Center text inside elements */
         }
         h1 {
             margin-bottom: 20px;
@@ -68,9 +72,7 @@
         // Initialize Jupiter Terminal without auto-starting
         window.Jupiter.init({
             endpoint: "https://solana-mainnet.g.alchemy.com/v2/i9bOEa196Oj_Ljl6Y_uP9_YE9QGfSrGe",
-            onReady: function() {
-                // Terminal is ready to be opened manually
-            }
+            autoOpen: false, // Prevent the terminal from opening automatically
         });
 
         // Add event listener to the button to open the Jupiter Terminal
