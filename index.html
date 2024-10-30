@@ -3,32 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>$OwlCat Swap</title>
-    <!-- Viewport meta tag for responsiveness -->
+    <!-- Viewport meta tag for proper scaling on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Include Google Fonts for a modern comic-style font -->
+    <!-- Include Google Fonts for the 'Comic Neue' font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Use a comic-style font like 'Comic Neue' -->
+    <!-- Use 'Comic Neue' font -->
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
-    <!-- Include the Jupiter Terminal script over HTTPS -->
+    <!-- Include the Jupiter Terminal script -->
     <script src="https://terminal.jup.ag/main-v3.js"></script>
     <style>
         html, body {
             margin: 0;
             padding: 0;
+            overflow: auto; /* Allow scrolling if necessary */
         }
         body {
             background-color: #121212; /* Dark theme background */
             color: #ffd700; /* Gold text color */
             font-family: 'Comic Neue', cursive;
+            width: 100%;
+            height: 100vh; /* Set body height to viewport height */
             position: relative;
-            min-width: 100%;
-            min-height: 100vh; /* Ensure minimum height covers the viewport */
         }
-        /* Add the background image using a pseudo-element */
+        /* Background image */
         body::before {
             content: "";
-            position: fixed; /* Fix the background image in place */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -36,34 +37,35 @@
             background-image: url('1.jpg'); /* Replace with your image path */
             background-size: cover;
             background-position: center;
-            opacity: 0.12; /* Set opacity to 12% */
-            z-index: -1; /* Place behind the content */
+            opacity: 0.12;
+            z-index: -1;
         }
+        /* Container with fixed size */
         .container {
+            width: 600px; /* Fixed width */
+            height: 400px; /* Fixed height */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             display: flex;
             flex-direction: column;
-            align-items: center; /* Center horizontally */
-            justify-content: center; /* Center vertically */
-            width: 100%; /* Ensure full width */
-            min-height: 100vh; /* Ensure container fills at least viewport height */
-            text-align: center; /* Center text inside elements */
-            position: relative; /* Allow natural flow */
-            padding: 20px; /* Padding for small screens */
-            box-sizing: border-box; /* Include padding in width calculations */
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 10;
         }
-        /* Opaque container for content */
+        /* Content box */
         .opaque-container {
-            background-color: rgba(18, 18, 18, 0.8); /* Semi-transparent background */
+            background-color: rgba(18, 18, 18, 0.8);
             padding: 30px;
             border-radius: 15px;
-            max-width: 90%;
-            width: 100%; /* Full width on small screens */
-            box-sizing: border-box; /* Include padding in width */
+            width: 100%;
+            box-sizing: border-box;
         }
         h1 {
             margin-bottom: 20px;
             font-size: 2.5em;
-            /* Text outline effect */
             text-shadow:
                 -1px -1px 0 #000,
                 1px -1px 0 #000,
@@ -72,7 +74,6 @@
         }
         p {
             font-size: 1.2em;
-            /* Text outline effect */
             text-shadow:
                 -1px -1px 0 #000,
                 1px -1px 0 #000,
@@ -84,21 +85,19 @@
             margin-top: 20px;
             font-size: 0.9em;
             opacity: 0.8;
-            position: relative;
         }
-        /* Modern button styling */
+        /* Button styling */
         #startSwapBtn {
             padding: 15px 30px;
             font-size: 1em;
             margin-bottom: 20px;
             cursor: pointer;
-            background: linear-gradient(135deg, #ffd700, #b8860b); /* Gold gradient */
+            background: linear-gradient(135deg, #ffd700, #b8860b);
             border: none;
             border-radius: 30px;
             color: #fff;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
             transition: background 0.3s, transform 0.3s;
-            position: relative;
         }
         #startSwapBtn:hover {
             background: linear-gradient(135deg, #b8860b, #ffd700);
@@ -108,7 +107,7 @@
             transform: translateY(0);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
-        /* Ensure the modal appears above all content */
+        /* Jupiter Terminal modal z-index */
         .jupiter-terminal-modal {
             z-index: 9999 !important;
         }
@@ -125,43 +124,21 @@
             padding: 10px 20px;
             border-radius: 10px;
             transition: background 0.3s;
-            z-index: 1000; /* Ensure it's above other elements */
+            z-index: 1000;
         }
         .home-button:hover {
             background-color: rgba(18, 18, 18, 0.9);
-        }
-        /* Responsive adjustments */
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2em;
-            }
-            p {
-                font-size: 1em;
-            }
-            #startSwapBtn {
-                padding: 10px 20px;
-                font-size: 0.9em;
-            }
-            .home-button {
-                font-size: 1em;
-                top: 10px;
-                left: 10px;
-                padding: 8px 16px;
-            }
-            .opaque-container {
-                padding: 20px;
-            }
         }
     </style>
 </head>
 <body>
     <!-- Home button -->
-    <a href="https://www.owlcatlab.com" class="home-button">Home</a>
+    <a href="https://owlcatlab.com" class="home-button">Home</a>
     <div class="container">
-        <!-- Opaque container around content -->
+        <!-- Content box -->
         <div class="opaque-container">
             <h1>$OwlCat Swap</h1>
-            <!-- Start Swap App button -->
+            <!-- Swap App button -->
             <button id="startSwapBtn">Start Swap App</button>
             <p>Swap Powered by <a href="https://jup.ag" target="_blank" style="color: #ffd700; text-decoration: none;">Jupiter Terminal</a></p>
             <div class="footer">
@@ -169,7 +146,7 @@
             </div>
         </div>
     </div>
-    <!-- Add the script at the end of the body to ensure the DOM is loaded -->
+    <!-- Jupiter Terminal script -->
     <script>
         // Initialize and open the Jupiter Terminal in modal mode
         document.getElementById('startSwapBtn').addEventListener('click', function() {
