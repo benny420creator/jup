@@ -23,7 +23,6 @@
         h1 {
             margin-bottom: 20px;
             font-size: 2.5em;
-     
         }
         p {
             font-size: 1.2em;
@@ -34,13 +33,24 @@
             font-size: 0.9em;
             opacity: 0.6;
         }
+        /* Button styling */
+        #startSwapBtn {
+            padding: 10px 20px;
+            font-size: 1em;
+            margin-bottom: 20px;
+            cursor: pointer;
+            background-color: #00cc99;
+            border: none;
+            border-radius: 5px;
+            color: #ffffff;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>$OwlCat Swap</h1>
-        
-        
+        <!-- Start Swap App button -->
+        <button id="startSwapBtn">Start Swap App</button>
         <p>Swap Powered by Jupiter Terminal</p>
     </div>
     <div class="footer">
@@ -49,8 +59,12 @@
     <!-- Initialize the Jupiter Terminal -->
     <script>
         window.Jupiter.init({
-            
             endpoint: "https://solana-mainnet.g.alchemy.com/v2/i9bOEa196Oj_Ljl6Y_uP9_YE9QGfSrGe",
+        });
+
+        // Add event listener to the button to open the Jupiter Terminal
+        document.getElementById('startSwapBtn').addEventListener('click', function() {
+            window.Jupiter.open();
         });
     </script>
 </body>
