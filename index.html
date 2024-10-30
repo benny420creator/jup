@@ -8,8 +8,8 @@
     <!-- Include Google Fonts for a comic-style font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Use 'Bangers' font -->
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <!-- Use 'Comic Neue' font -->
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
     <!-- Include the Jupiter Terminal script -->
     <script src="https://terminal.jup.ag/main-v3.js"></script>
     <style>
@@ -47,9 +47,9 @@
         /* Container with fixed size */
         .container {
             width: 350px; /* Fixed width */
-            max-width: 100%; /* Prevent container from exceeding viewport width */
-            min-width: 0; /* Fix flex overflow issues */
+            max-width: 350px; /* Enforce max width */
             height: 600px; /* Fixed height */
+            max-height: 600px; /* Enforce max height */
             position: absolute;
             top: 40%;
             left: 50%;
@@ -75,7 +75,7 @@
         }
         /* Apply font and style to header, paragraph, footer, and button */
         h1, p, .footer, #startSwapBtn, .home-button {
-            font-family: 'Bangers', cursive;
+            font-family: 'Comic Neue', cursive;
             text-shadow:
                 2px 2px 0 #000,
                 -2px -2px 0 #000,
@@ -124,12 +124,16 @@
         /* Jupiter Terminal modal positioning */
         .jupiter-terminal-modal {
             position: fixed !important;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 9999 !important; 
-        }        
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            z-index: 9999 !important;
+            display: none; /* Hide the modal initially */
+        }
+        .jupiter-terminal-modal.jupiter-terminal-opened {
+            display: block !important; /* Show the modal when opened */
+        }
         /* Home button styling */
         .home-button {
             position: absolute;
@@ -144,7 +148,7 @@
             border-radius: 10px;
             transition: background 0.3s;
             z-index: 1000;
-            font-family: 'Bangers', cursive;
+            font-family: 'Comic Neue', cursive;
             text-shadow:
                 2px 2px 0 #000,
                 -2px -2px 0 #000,
@@ -175,19 +179,23 @@
             </div>
         </div>
     </div>
+    <!-- Off-screen container -->
+    <div id="offscreen-container" style="position: absolute; left: -9999px;"></div>
     <!-- Jupiter Terminal script -->
     <script>
-        // Initialize and open the Jupiter Terminal in modal mode
         document.getElementById('startSwapBtn').addEventListener('click', function() {
+            // Initialize Jupiter Terminal using the off-screen container
             window.Jupiter.init({
                 endpoint: "https://solana-mainnet.g.alchemy.com/v2/i9bOEa196Oj_Ljl6Y_uP9_YE9QGfSrGe",
                 mode: "modal", // Open in modal mode
+                container: document.getElementById('offscreen-container') // Use off-screen container
             }).then(function() {
                 // Move the modal to the body
                 var modal = document.querySelector('.jupiter-terminal-modal');
                 if (modal) {
                     document.body.appendChild(modal);
                 }
+                // Open the Jupiter Terminal modal
                 window.Jupiter.open();
             });
         });
