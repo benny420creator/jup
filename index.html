@@ -14,11 +14,8 @@
             padding: 0;
         }
         .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
+            text-align: center; /* Center the content */
+            padding-top: 15vh;
         }
         h1 {
             margin-bottom: 20px;
@@ -33,16 +30,26 @@
             font-size: 0.9em;
             opacity: 0.6;
         }
-        /* Button styling */
+        /* Modern button styling */
         #startSwapBtn {
-            padding: 10px 20px;
+            padding: 15px 30px;
             font-size: 1em;
             margin-bottom: 20px;
             cursor: pointer;
-            background-color: #00cc99;
+            background: linear-gradient(135deg, #00cc99, #0099cc);
             border: none;
-            border-radius: 5px;
+            border-radius: 30px;
             color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: background 0.3s, transform 0.3s;
+        }
+        #startSwapBtn:hover {
+            background: linear-gradient(135deg, #0099cc, #00cc99);
+            transform: translateY(-2px);
+        }
+        #startSwapBtn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
@@ -58,8 +65,12 @@
     </div>
     <!-- Initialize the Jupiter Terminal -->
     <script>
+        // Initialize Jupiter Terminal without auto-starting
         window.Jupiter.init({
             endpoint: "https://solana-mainnet.g.alchemy.com/v2/i9bOEa196Oj_Ljl6Y_uP9_YE9QGfSrGe",
+            onReady: function() {
+                // Terminal is ready to be opened manually
+            }
         });
 
         // Add event listener to the button to open the Jupiter Terminal
