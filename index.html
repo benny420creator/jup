@@ -3,88 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <title>$OwlCat Swap</title>
-    <!-- Include Google Fonts for a modern comic-style font -->
+    <!-- Viewport meta tag for proper scaling on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include Google Fonts for a comic-style font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- You can choose a comic-style font like 'Comic Neue' -->
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
-    <!-- Include the Jupiter Terminal script over HTTPS -->
+    <!-- Use 'Bangers' font -->
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <!-- Include the Jupiter Terminal script -->
     <script src="https://terminal.jup.ag/main-v3.js"></script>
     <style>
-        html {
-            /* Force scrollbar to prevent layout shift */
-            overflow-y: scroll;
+        /* Apply box-sizing to all elements */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            overflow-y: hidden; /* Prevent vertical scrolling */
+            height: 100%; /* Ensure the body takes full height */
         }
         body {
             background-color: #121212; /* Dark theme background */
             color: #ffd700; /* Gold text color */
-            font-family: 'Comic Neue', cursive;
-            margin: 0;
-            padding: 0;
-            position: relative;
+            width: 100%;
+            height: 100vh; /* Set body height to viewport height */
         }
-        /* Add the background image using a pseudo-element */
+        /* Background image */
         body::before {
             content: "";
-            position: fixed; /* Fix the background image in place */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('your-image.jpg'); /* Replace with your image path */
+            background-image: url('1.jpg'); /* Replace with your image path */
             background-size: cover;
             background-position: center;
-            opacity: 0.12; /* Set opacity to 12% */
-            z-index: -1; /* Place behind the content */
+            opacity: 0.12;
+            z-index: -1;
         }
+        /* Container with fixed size */
         .container {
+            width: 350px; /* Fixed width */
+            max-width: 100%; /* Prevent container from exceeding viewport width */
+            min-width: 0; /* Fix flex overflow issues */
+            height: 600px; /* Fixed height */
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             display: flex;
             flex-direction: column;
-            align-items: center; /* Center horizontally */
-            justify-content: center; /* Center vertically */
-            min-height: 100vh; /* Full viewport height */
-            text-align: center; /* Center text inside elements */
-            position: relative; /* Ensure content stays above the background */
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden; /* Prevent the container from resizing */
+            flex-shrink: 0; /* Prevent the container from shrinking */
+            flex-grow: 0;   /* Prevent the container from growing */
+        }
+        /* Content box */
+        .opaque-container {
+            background-color: rgba(18, 18, 18, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            width: 100%;
+            box-sizing: border-box;
+            flex-shrink: 0;
+            flex-grow: 0;
+        }
+        /* Apply font and style to header, paragraph, footer, and button */
+        h1, p, .footer, #startSwapBtn, .home-button {
+            font-family: 'Bangers', cursive;
+            text-shadow:
+                2px 2px 0 #000,
+                -2px -2px 0 #000,
+                2px -2px 0 #000,
+                -2px 2px 0 #000,
+                0 2px 0 #000,
+                2px 0 0 #000,
+                0 -2px 0 #000,
+                -2px 0 0 #000;
+            color: #ffd700;
         }
         h1 {
             margin-bottom: 20px;
             font-size: 2.5em;
-            /* Text outline effect */
-            text-shadow:
-                -1px -1px 0 #000,  
-                1px -1px 0 #000,  
-                -1px 1px 0 #000,  
-                1px 1px 0 #000;
         }
         p {
             font-size: 1.2em;
-            /* Text outline effect */
-            text-shadow:
-                -1px -1px 0 #000,  
-                1px -1px 0 #000,  
-                -1px 1px 0 #000,  
-                1px 1px 0 #000;
         }
         .footer {
             text-align: center;
-            margin-top: 40px;
+            margin-top: 20px;
             font-size: 0.9em;
             opacity: 0.8;
-            position: relative;
         }
-        /* Modern button styling */
+        /* Button styling */
         #startSwapBtn {
             padding: 15px 30px;
             font-size: 1em;
             margin-bottom: 20px;
             cursor: pointer;
-            background: linear-gradient(135deg, #ffd700, #b8860b); /* Gold gradient */
+            background: linear-gradient(135deg, #ffd700, #b8860b);
             border: none;
             border-radius: 30px;
             color: #fff;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
             transition: background 0.3s, transform 0.3s;
-            position: relative;
         }
         #startSwapBtn:hover {
             background: linear-gradient(135deg, #b8860b, #ffd700);
@@ -94,23 +121,61 @@
             transform: translateY(0);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
-        /* Ensure the modal appears above all content */
+        /* Jupiter Terminal modal positioning */
         .jupiter-terminal-modal {
-            z-index: 9999 !important;
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 9999 !important; 
+        }        
+        /* Home button styling */
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            text-decoration: none;
+            color: #ffd700;
+            font-size: 1.2em;
+            font-weight: bold;
+            background-color: rgba(18, 18, 18, 0.7);
+            padding: 10px 20px;
+            border-radius: 10px;
+            transition: background 0.3s;
+            z-index: 1000;
+            font-family: 'Bangers', cursive;
+            text-shadow:
+                2px 2px 0 #000,
+                -2px -2px 0 #000,
+                2px -2px 0 #000,
+                -2px 2px 0 #000,
+                0 2px 0 #000,
+                2px 0 0 #000,
+                0 -2px 0 #000,
+                -2px 0 0 #000;
+        }
+        .home-button:hover {
+            background-color: rgba(18, 18, 18, 0.9);
         }
     </style>
 </head>
 <body>
+    <!-- Home button -->
+    <a href="https://owlcatlab.com" class="home-button">Home</a>
     <div class="container">
-        <h1>$OwlCat Swap</h1>
-        <!-- Start Swap App button -->
-        <button id="startSwapBtn">Start Swap App</button>
-        <p>Swap Powered by Jupiter Terminal</p>
+        <!-- Content box -->
+        <div class="opaque-container">
+            <h1>$OwlCat Swap</h1>
+            <!-- Swap App button -->
+            <button id="startSwapBtn">Start Swap App</button>
+            <p>Swap Powered by <a href="https://jup.ag" target="_blank" style="color: #ffd700; text-decoration: none;">Jupiter Terminal</a></p>
+            <div class="footer">
+                &copy; 2024 Benny420Creator Inc.
+            </div>
+        </div>
     </div>
-    <div class="footer">
-        &copy; 2024 Benny420Creator Inc.
-    </div>
-    <!-- Add the script at the end of the body to ensure the DOM is loaded -->
+    <!-- Jupiter Terminal script -->
     <script>
         // Initialize and open the Jupiter Terminal in modal mode
         document.getElementById('startSwapBtn').addEventListener('click', function() {
@@ -118,35 +183,14 @@
                 endpoint: "https://solana-mainnet.g.alchemy.com/v2/i9bOEa196Oj_Ljl6Y_uP9_YE9QGfSrGe",
                 mode: "modal", // Open in modal mode
             }).then(function() {
+                // Move the modal to the body
+                var modal = document.querySelector('.jupiter-terminal-modal');
+                if (modal) {
+                    document.body.appendChild(modal);
+                }
                 window.Jupiter.open();
             });
         });
-
-        // Function to adjust body padding when modal opens/closes
-        function adjustBodyPadding() {
-            const hasModalOpen = document.documentElement.classList.contains('jupiter-modal-open');
-            if (hasModalOpen) {
-                // Calculate scrollbar width
-                const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-                // Add padding-right to compensate for scrollbar disappearance
-                document.body.style.paddingRight = scrollbarWidth + 'px';
-            } else {
-                // Remove padding-right when modal closes
-                document.body.style.paddingRight = '';
-            }
-        }
-
-        // Set up a MutationObserver to detect class changes on the html element
-        const observer = new MutationObserver(mutations => {
-            mutations.forEach(mutation => {
-                if (mutation.attributeName === 'class') {
-                    adjustBodyPadding();
-                }
-            });
-        });
-
-        // Start observing the html element for attribute changes
-        observer.observe(document.documentElement, { attributes: true });
     </script>
 </body>
 </html>
