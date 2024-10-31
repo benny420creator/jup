@@ -44,8 +44,8 @@
             text-align: center;
             background-color: rgba(18, 18, 18, 0.9);
             padding: 20px 0;
-            font-size: 3em;
-            z-index: 100; /* Adjusted z-index to prevent overlap */
+            font-size: 2em;
+            z-index: 1000; /* Keep high to ensure visibility */
             color: #ffd700;
             text-shadow:
                 2px 2px 0 #000,
@@ -57,10 +57,14 @@
                 0 -2px 0 #000,
                 -2px 0 0 #000;
         }
-        /* Add padding for mobile to prevent terminal overlap */
+        /* Ensure content is below the header */
+        body {
+            margin-top: 80px; /* Adjust margin to avoid header overlap */
+        }
+        /* On mobile devices */
         @media (max-width: 768px) {
             body {
-                padding-top: 70px; /* Space for the header on mobile */
+                margin-top: 100px; /* Increase top margin to handle header height */
             }
         }
         .footer {
@@ -88,6 +92,10 @@
         }
         .home-button:hover {
             background-color: rgba(18, 18, 18, 0.9);
+        }
+        /* Ensure Jupiter Terminal modal sits on top */
+        .jupiter-terminal-modal {
+            z-index: 9999 !important;
         }
     </style>
 </head>
