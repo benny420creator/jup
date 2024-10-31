@@ -67,18 +67,22 @@
     }
 
     .start-btn {
-      background-color: #333;
+      background-color: #6a1b9a;
       color: #fff;
       padding: 15px 30px;
       border: none;
-      border-radius: 8px;
-      font-size: 1.2em;
+      border-radius: 12px;
+      font-size: 1.5em;
       cursor: pointer;
-      transition: background-color 0.3s;
+      transition: background-color 0.3s, transform 0.2s;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
     }
 
     .start-btn:hover {
-      background-color: #555;
+      background-color: #8e24aa;
+      transform: scale(1.05);
     }
 
     footer {
@@ -93,14 +97,16 @@
   <!-- Attach the loading script in your <head /> -->
   <script src='https://terminal.jup.ag/main-v3.js'></script>
   <script>
-    window.Jupiter.init({ 
-      endpoint: "https://solana-mainnet.g.alchemy.com/v2/i9bOEa196Oj_Ljl6Y_uP9_YE9QGfSrGe",
-      formProps: {
-        fixedOutputMint: true,
-        swapMode: "ExactIn",
-        initialOutputMint: "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
-      },
-    });
+    function startSwapApp() {
+      window.Jupiter.init({ 
+        endpoint: "https://solana-mainnet.g.alchemy.com/v2/i9bOEa196Oj_Ljl6Y_uP9_YE9QGfSrGe",
+        formProps: {
+          fixedOutputMint: true,
+          swapMode: "ExactIn",
+          initialOutputMint: "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+        },
+      });
+    }
   </script>
 </head>
 <body>
@@ -110,7 +116,7 @@
   </header>
 
   <div class="container">
-    <button class="start-btn">Start Terminal</button>
+    <button class="start-btn" onclick="startSwapApp()">Start Swap App</button>
   </div>
 
   <footer>&copy; Benny420Creator Inc.</footer>
