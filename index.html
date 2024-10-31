@@ -15,9 +15,10 @@
       min-height: 100vh;
       color: #fff;
       position: relative;
+      overflow: hidden;
     }
 
-    /* Background image and overlay */
+    /* Background image */
     body::before {
       content: "";
       position: fixed;
@@ -32,7 +33,7 @@
       z-index: -2;
     }
 
-    /* Overlay for darkening the background */
+    /* Dark overlay with 12% opacity */
     body::after {
       content: "";
       position: fixed;
@@ -40,7 +41,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.12); /* 12% opacity overlay */
+      background-color: rgba(0, 0, 0, 0.88); /* 12% visibility of image (88% opacity) */
       z-index: -1;
     }
 
@@ -78,7 +79,8 @@
       text-decoration: none;
       border-radius: 5px;
       font-size: 0.9em;
-      z-index: 1;
+      z-index: 1; /* Layered above the overlay */
+      opacity: 0.9;
     }
 
     .container {
@@ -105,6 +107,7 @@
       text-transform: uppercase;
       letter-spacing: 1.5px;
       text-shadow: 1px 1px 2px #333;
+      z-index: 2;
     }
 
     .start-btn:hover {
