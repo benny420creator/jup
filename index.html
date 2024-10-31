@@ -45,7 +45,7 @@
             background-color: rgba(18, 18, 18, 0.9);
             padding: 20px 0;
             font-size: 3em;
-            z-index: 1000;
+            z-index: 100; /* Adjusted z-index to prevent overlap */
             color: #ffd700;
             text-shadow:
                 2px 2px 0 #000,
@@ -56,6 +56,12 @@
                 2px 0 0 #000,
                 0 -2px 0 #000,
                 -2px 0 0 #000;
+        }
+        /* Add padding for mobile to prevent terminal overlap */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px; /* Space for the header on mobile */
+            }
         }
         .footer {
             position: fixed;
