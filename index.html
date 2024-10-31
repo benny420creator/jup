@@ -17,7 +17,6 @@
             padding: 0;
             height: 100%;
             font-family: 'Bangers', cursive;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
         /* Background Image Styling */
         body {
@@ -25,8 +24,8 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            overflow-y: scroll;
         }
-        /* Semi-transparent overlay for opacity effect */
         .overlay {
             position: fixed;
             top: 0;
@@ -37,30 +36,30 @@
             z-index: -1;
         }
         .header {
-            position: fixed;
-            top: 0;
             width: 100%;
             text-align: center;
             background-color: rgba(18, 18, 18, 0.9);
             padding: 15px 0;
             font-size: 2em;
-            z-index: 1000;
             color: #ffd700;
             text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+            position: relative;
+            top: 0;
+            z-index: 1000;
         }
         .footer {
-            position: fixed;
-            bottom: 0;
             width: 100%;
             text-align: center;
             background-color: rgba(18, 18, 18, 0.9);
             padding: 10px 0;
             font-size: 0.9em;
             color: #ffd700;
+            position: relative;
+            bottom: 0;
             z-index: 1000;
         }
         .home-button {
-            position: absolute;
+            position: relative;
             top: 20px;
             left: 20px;
             text-decoration: none;
@@ -78,26 +77,21 @@
         }
         /* Responsive modal styling */
         .jupiter-terminal-modal {
-            position: relative;
             width: 90vw;
-            height: auto;
-            max-height: calc(100vh - 160px); /* Allows space for header and footer */
-            margin: 120px auto 60px; /* Leaves space for header and footer */
+            max-width: 600px;
+            margin: 20px auto; /* Centers and adds top/bottom spacing */
             border-radius: 8px;
-            overflow-y: auto; /* Enables vertical scroll within modal */
-            z-index: 999;
-            background-color: rgba(18, 18, 18, 0.95); /* Semi-transparent background */
+            overflow-y: auto; /* Enables scroll inside the modal if needed */
+            background-color: rgba(18, 18, 18, 0.95); /* Modal background */
             padding: 20px;
             color: #fff;
+            max-height: 70vh; /* Constrains height to prevent overflow */
         }
         /* Adjustments for smaller screens */
         @media (max-width: 768px) {
             .jupiter-terminal-modal {
                 width: 95vw;
-                height: auto;
-                margin: 100px auto 60px;
-                max-height: calc(100vh - 140px);
-                border-radius: 5px;
+                max-height: 65vh;
             }
             .header {
                 font-size: 1.5em;
@@ -114,9 +108,7 @@
         @media (max-width: 480px) {
             .jupiter-terminal-modal {
                 width: 100vw;
-                height: auto;
-                margin: 80px auto 50px;
-                max-height: calc(100vh - 130px);
+                max-height: 60vh;
             }
             .header {
                 font-size: 1.3em;
