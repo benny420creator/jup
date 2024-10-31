@@ -15,25 +15,18 @@
         html, body {
             margin: 0;
             padding: 0;
-            overflow-x: hidden;
-            overflow-y: hidden;
             height: 100%;
+            overflow: hidden;
             background-color: #121212;
-            color: #ffd700;
             font-family: 'Bangers', cursive;
         }
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('1.jpg');
+        /* Background Image Styling */
+        body {
+            background-image: url('1.jpg'); /* Update this path to your image URL */
             background-size: cover;
             background-position: center;
-            opacity: 0.12;
-            z-index: -1;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
         .header {
             position: fixed;
@@ -61,6 +54,7 @@
             width: 100%;
             text-align: center;
             font-size: 0.9em;
+            color: #ffd700;
             opacity: 0.8;
         }
         .home-button {
@@ -91,7 +85,6 @@
     
     <!-- Jupiter Terminal launch script -->
     <script>
-        // Initialize and open the Jupiter Terminal in modal mode when page loads
         window.addEventListener('DOMContentLoaded', (event) => {
             window.Jupiter.init({
                 endpoint: "https://solana-mainnet.g.alchemy.com/v2/i9bOEa196Oj_Ljl6Y_uP9_YE9QGfSrGe",
