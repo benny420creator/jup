@@ -9,22 +9,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
     <script src="https://terminal.jup.ag/main-v3.js"></script>
     <style>
+        /* Basic styling */
         *, *::before, *::after {
             box-sizing: border-box;
         }
-        html, body {
+        body {
             margin: 0;
             padding: 0;
-            height: 100%;
             font-family: 'Bangers', cursive;
-        }
-        /* Background Image Styling */
-        body {
-            background-image: url('1.jpg'); /* Update this path to your image URL */
+            background-image: url('1.jpg'); /* Path to your background image */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            overflow-y: scroll;
         }
         .overlay {
             position: fixed;
@@ -36,97 +32,39 @@
             z-index: -1;
         }
         .header {
-            width: 100%;
             text-align: center;
             background-color: rgba(18, 18, 18, 0.9);
-            padding: 15px 0;
+            padding: 15px;
             font-size: 2em;
             color: #ffd700;
-            text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
-            position: relative;
-            top: 0;
-            z-index: 1000;
-        }
-        .footer {
-            width: 100%;
-            text-align: center;
-            background-color: rgba(18, 18, 18, 0.9);
-            padding: 10px 0;
-            font-size: 0.9em;
-            color: #ffd700;
-            position: relative;
-            bottom: 0;
-            z-index: 1000;
+            text-shadow: 2px 2px 0 #000;
         }
         .home-button {
-            position: relative;
+            position: absolute;
             top: 20px;
             left: 20px;
             text-decoration: none;
             color: #ffd700;
             font-size: 1.2em;
-            font-weight: bold;
             background-color: rgba(18, 18, 18, 0.7);
             padding: 10px 20px;
             border-radius: 10px;
             transition: background 0.3s;
-            z-index: 1000;
         }
         .home-button:hover {
             background-color: rgba(18, 18, 18, 0.9);
         }
-        /* Responsive modal styling */
-        .jupiter-terminal-modal {
-            width: 90vw;
-            max-width: 600px;
-            margin: 20px auto; /* Centers and adds top/bottom spacing */
-            border-radius: 8px;
-            overflow-y: auto; /* Enables scroll inside the modal if needed */
-            background-color: rgba(18, 18, 18, 0.95); /* Modal background */
-            padding: 20px;
-            color: #fff;
-            max-height: 70vh; /* Constrains height to prevent overflow */
-        }
-        /* Adjustments for smaller screens */
-        @media (max-width: 768px) {
-            .jupiter-terminal-modal {
-                width: 95vw;
-                max-height: 65vh;
-            }
-            .header {
-                font-size: 1.5em;
-                padding: 10px 0;
-            }
-            .footer {
-                padding: 8px 0;
-            }
-            .home-button {
-                font-size: 1em;
-                padding: 8px 16px;
-            }
-        }
-        @media (max-width: 480px) {
-            .jupiter-terminal-modal {
-                width: 100vw;
-                max-height: 60vh;
-            }
-            .header {
-                font-size: 1.3em;
-                padding: 8px 0;
-            }
-            .footer {
-                font-size: 0.8em;
-                padding: 6px 0;
-            }
-            .home-button {
-                font-size: 0.9em;
-                padding: 6px 12px;
-            }
+        .footer {
+            text-align: center;
+            padding: 10px;
+            font-size: 0.9em;
+            color: #ffd700;
+            background-color: rgba(18, 18, 18, 0.9);
         }
     </style>
 </head>
 <body>
-    <!-- Overlay for background opacity -->
+    <!-- Overlay -->
     <div class="overlay"></div>
 
     <!-- Header -->
@@ -137,15 +75,11 @@
     
     <!-- Jupiter Terminal launch script -->
     <script>
-        window.addEventListener('DOMContentLoaded', (event) => {
+        window.addEventListener('DOMContentLoaded', () => {
             window.Jupiter.init({
                 endpoint: "https://solana-mainnet.g.alchemy.com/v2/i9bOEa196Oj_Ljl6Y_uP9_YE9QGfSrGe",
                 mode: "modal",
-            }).then(function() {
-                var modal = document.querySelector('.jupiter-terminal-modal');
-                if (modal) {
-                    document.body.appendChild(modal);
-                }
+            }).then(() => {
                 window.Jupiter.open();
             });
         });
