@@ -16,7 +16,6 @@
             margin: 0;
             padding: 0;
             height: 100%;
-            overflow: hidden;
             font-family: 'Bangers', cursive;
         }
         /* Background Image Styling */
@@ -59,12 +58,14 @@
         }
         .footer {
             position: fixed;
-            bottom: 20px;
+            bottom: 0;
             width: 100%;
             text-align: center;
+            background-color: rgba(18, 18, 18, 0.9);
+            padding: 10px 0;
             font-size: 0.9em;
             color: #ffd700;
-            opacity: 0.8;
+            z-index: 1000;
         }
         .home-button {
             position: absolute;
@@ -85,13 +86,15 @@
         }
         /* Responsive modal styling */
         .jupiter-terminal-modal {
+            position: relative;
+            margin: 120px auto 50px; /* Leaves space for header and footer */
             width: 90vw;
             height: 90vh;
             max-width: 600px;
-            max-height: 80vh;
-            overflow: auto;
+            max-height: calc(100vh - 180px); /* Adjust for header and footer */
             border-radius: 8px;
-            margin: auto;
+            overflow: auto;
+            z-index: 999; /* Place it above other content */
         }
     </style>
 </head>
@@ -115,8 +118,8 @@
                 var modal = document.querySelector('.jupiter-terminal-modal');
                 if (modal) {
                     document.body.appendChild(modal);
-                    modal.style.width = '90vw';  // Adjust to viewport width
-                    modal.style.height = '90vh'; // Adjust to viewport height
+                    modal.style.marginTop = '120px';  // Adjusts for header
+                    modal.style.marginBottom = '50px'; // Adjusts for footer
                 }
                 window.Jupiter.open();
             });
