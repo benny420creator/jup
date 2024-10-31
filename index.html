@@ -84,7 +84,7 @@
         .home-button:hover {
             background-color: rgba(18, 18, 18, 0.9);
         }
-        /* Responsive modal styling */
+        /* Default modal styling */
         .jupiter-terminal-modal {
             position: relative;
             margin: 120px auto 50px; /* Leaves space for header and footer */
@@ -95,6 +95,48 @@
             border-radius: 8px;
             overflow: auto;
             z-index: 999; /* Place it above other content */
+        }
+        /* Media queries for smaller screens */
+        @media (max-width: 768px) {
+            .jupiter-terminal-modal {
+                width: 100vw;
+                height: 85vh;
+                margin: 100px auto 70px;
+                max-width: 100%;
+                max-height: calc(100vh - 150px); /* Adjust for smaller header/footer spacing */
+                border-radius: 0;
+            }
+            .header {
+                font-size: 1.5em;
+                padding: 15px 0;
+            }
+            .footer {
+                padding: 8px 0;
+            }
+            .home-button {
+                font-size: 1em;
+                padding: 8px 16px;
+            }
+        }
+        @media (max-width: 480px) {
+            .jupiter-terminal-modal {
+                width: 100vw;
+                height: 80vh;
+                margin: 80px auto 60px;
+                max-height: calc(100vh - 140px);
+            }
+            .header {
+                font-size: 1.2em;
+                padding: 10px 0;
+            }
+            .footer {
+                font-size: 0.8em;
+                padding: 6px 0;
+            }
+            .home-button {
+                font-size: 0.9em;
+                padding: 6px 12px;
+            }
         }
     </style>
 </head>
