@@ -1,110 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>$OwlCat Swap</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
-    <script src="https://terminal.jup.ag/main-v3.js"></script>
-    <style>
-        /* Basic styling */
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Bangers', cursive;
-            background-image: url('1.jpg'); /* Path to your background image */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(18, 18, 18, 0.88);
-            z-index: -1;
-        }
-        .header {
-            position: sticky;
-            top: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: rgba(18, 18, 18, 0.9);
-            padding: 15px;
-            font-size: 2em;
-            color: #ffd700;
-            text-shadow: 2px 2px 0 #000;
-            z-index: 1000;
-        }
-        .home-button {
-            position: absolute;
-            top: 15px;
-            left: 10px;
-            text-decoration: none;
-            color: #ffd700;
-            font-size: 0.8em;
-            background-color: rgba(18, 18, 18, 0.7);
-            padding: 6px 12px;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-        .home-button:hover {
-            background-color: rgba(18, 18, 18, 0.9);
-        }
-        .jupiter-terminal-container {
-            display: flex;
-            justify-content: center;
-            padding: 60px 20px; /* Adds space below the header */
-        }
-        .footer {
-            text-align: center;
-            padding: 10px;
-            font-size: 0.9em;
-            color: #ffd700;
-            background-color: rgba(18, 18, 18, 0.9);
-            margin-top: auto;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>$OwlCat Swap</title>
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Permanent Marker', cursive;
+      background-image: url('1.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      color: #fff;
+      position: relative;
+    }
+
+    /* Overlay for background image */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.12); /* 12% opacity overlay */
+      z-index: -1;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    header h1 {
+      font-size: 2em;
+      color: #e0e0e0;
+    }
+
+    .home-btn {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 15px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1em;
+    }
+
+    .container {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    #integrated-terminal {
+      border: 1px solid #444;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: #aaa;
+      font-size: 0.9em;
+    }
+  </style>
 </head>
 <body>
-    <!-- Overlay -->
-    <div class="overlay"></div>
+  <header>
+    <a href="https://www.owlcatlab.com" class="home-btn">Home</a>
+    <h1>$OwlCat Swap</h1>
+  </header>
 
-    <!-- Header with Home Button -->
-    <div class="header">
-        $OwlCat Swap
-        <a href="https://www.owlcatlab.com" class="home-button">Home</a>
-    </div>
-    
-    <!-- Jupiter Terminal Container -->
-    <div class="jupiter-terminal-container">
-        <!-- Integrated Terminal Div -->
-        <div id="integrated-terminal" style="width: 400px; height: 568px;"></div>
-    </div>
-    
-    <!-- Jupiter Terminal launch script -->
+  <div class="container">
+    <script src='https://terminal.jup.ag/main-v3.js'></script>
+    <div id="integrated-terminal" style="width: 400px; height: 568px;"></div>
     <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            window.Jupiter.init({
-                endpoint: "https://solana-mainnet.g.alchemy.com/v2/i9bOEa196Oj_Ljl6Y_uP9_YE9QGfSrGe",
-                displayMode: "integrated",
-                integratedTargetId: "integrated-terminal",
-            });
-        });
+      window.Jupiter.init({
+        displayMode: "integrated",
+        integratedTargetId: "integrated-terminal",
+        endpoint: "https://solana-mainnet.g.alchemy.com/v2/i9bOEa196Oj_Ljl6Y_uP9_YE9QGfSrGe",
+        formProps: {
+          fixedOutputMint: true,
+          swapMode: "ExactIn",
+          initialOutputMint: "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+        },
+      });
     </script>
-    
-    <!-- Footer -->
-    <div class="footer">&copy; 2024 Benny420Creator Inc.</div>
+  </div>
+
+  <footer>&copy; Benny420Creator Inc.</footer>
 </body>
 </html>
