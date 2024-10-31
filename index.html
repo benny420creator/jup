@@ -28,7 +28,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.4); /* Adjusted opacity overlay */
+      background-color: rgba(0, 0, 0, 0.12); /* Adjusted opacity overlay */
       z-index: -1;
     }
 
@@ -46,6 +46,13 @@
       color: #e0e0e0;
       margin: 0;
       text-align: center;
+    }
+
+    /* Responsive Header Text */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.5em;
+      }
     }
 
     /* Home button positioning */
