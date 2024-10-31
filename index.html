@@ -45,7 +45,7 @@
             background-color: rgba(18, 18, 18, 0.9);
             padding: 20px 0;
             font-size: 2em;
-            z-index: 1000; /* Keep high to ensure visibility */
+            z-index: 1000;
             color: #ffd700;
             text-shadow:
                 2px 2px 0 #000,
@@ -57,14 +57,13 @@
                 0 -2px 0 #000,
                 -2px 0 0 #000;
         }
-        /* Ensure content is below the header */
+        /* Add margin to avoid header overlap */
         body {
-            margin-top: 80px; /* Adjust margin to avoid header overlap */
+            margin-top: 80px; /* Adjust to prevent content hiding */
         }
-        /* On mobile devices */
         @media (max-width: 768px) {
             body {
-                margin-top: 100px; /* Increase top margin to handle header height */
+                margin-top: 100px; /* Increase top margin for mobile */
             }
         }
         .footer {
@@ -93,9 +92,17 @@
         .home-button:hover {
             background-color: rgba(18, 18, 18, 0.9);
         }
-        /* Ensure Jupiter Terminal modal sits on top */
+        /* Ensure Jupiter Terminal modal fits any screen */
         .jupiter-terminal-modal {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            max-width: 100% !important;
+            max-height: 100% !important;
             z-index: 9999 !important;
+            overflow: auto;
         }
     </style>
 </head>
