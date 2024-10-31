@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>$OwlCat Swap - Swap App</title>
@@ -9,22 +9,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
     <script src="https://terminal.jup.ag/main-v3.js"></script>
     <style>
-        /* General Reset and Style */
         *, *::before, *::after {
             box-sizing: border-box;
         }
         html, body {
             margin: 0;
             padding: 0;
+            overflow: hidden;
             height: 100%;
             width: 100%;
             font-family: 'Comic Neue', cursive;
-            background-color: #121212; /* Fallback color */
+            background-color: #121212;
             color: #ffd700;
-            overflow: hidden;
         }
-
-        /* Background Image */
+        /* Background image */
         body::before {
             content: "";
             position: fixed;
@@ -32,23 +30,30 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('1.jpg'); /* Replace with full GitHub URL */
+            background-image: url('1.jpg');
             background-size: cover;
             background-position: center;
-            background-color: #333; /* Temporary color to confirm it's rendering */
             opacity: 0.12;
             z-index: -1;
         }
-
-        /* Header Styling */
+        /* Jupiter Terminal modal styling */
+        .jupiter-terminal-modal {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            z-index: 9999 !important;
+        }
+        /* Header styling */
         .header {
             text-align: center;
             padding: 10px;
-            font-size: calc(2em + 1vw);
+            font-size: calc(2em + 1vw); /* Responsive font size */
             font-weight: bold;
             color: #ffd700;
             background-color: rgba(18, 18, 18, 0.9);
-            text-shadow: 
+            text-shadow:
                 2px 2px 0 #000,
                 -2px -2px 0 #000,
                 2px -2px 0 #000,
@@ -59,15 +64,14 @@
                 -2px 0 0 #000;
             z-index: 1000;
         }
-
-        /* Home Button Styling */
+        /* Home button styling */
         .home-button {
             position: absolute;
             top: 15px;
             left: 15px;
             text-decoration: none;
             color: #ffd700;
-            font-size: calc(1em + 0.5vw);
+            font-size: calc(1em + 0.5vw); /* Responsive font size */
             font-weight: bold;
             background-color: rgba(18, 18, 18, 0.7);
             padding: 10px 20px;
@@ -87,56 +91,22 @@
         .home-button:hover {
             background-color: rgba(18, 18, 18, 0.9);
         }
-
-        /* Content Container for Spacing */
-        .content {
-            padding-top: 100px; /* Adds space under header */
-        }
-
-        /* Mobile Padding Adjustments */
-        @media (max-width: 768px) {
-            .content {
-                padding-top: 120px;
-            }
-        }
-
-        /* Jupiter Terminal modal styling */
-        .jupiter-terminal-modal {
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            width: 100vw !important;
-            height: 100vh !important;
-            z-index: 9999 !important;
-        }
     </style>
 </head>
 <body>
     <div class="header">$OwlCat Swap</div>
     <a href="https://www.OwlCatLab.com" class="home-button">Home</a>
-    <div class="content">
-        <!-- The Terminal or other content appears here, beneath the header and with padding. -->
-    </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Debugging: Log to verify if the image and modal load correctly
-            console.log("Page loaded. Initializing Jupiter...");
-            
             window.Jupiter.init({
                 endpoint: "https://solana-mainnet.g.alchemy.com/v2/i9bOEa196Oj_Ljl6Y_uP9_YE9QGfSrGe",
                 mode: "modal",
             }).then(function() {
                 var modal = document.querySelector('.jupiter-terminal-modal');
                 if (modal) {
-                    console.log("Jupiter modal found. Adjusting position.");
                     document.body.appendChild(modal);
-                    modal.style.top = '100px';
-                } else {
-                    console.log("Error: Jupiter modal not found.");
                 }
                 window.Jupiter.open();
-            }).catch(function(error) {
-                console.error("Jupiter initialization error:", error);
             });
         });
     </script>
