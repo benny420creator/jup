@@ -15,10 +15,9 @@
       min-height: 100vh;
       color: #fff;
       position: relative;
-      overflow: hidden;
     }
 
-    /* Background image with overlay */
+    /* Background image and overlay */
     body::before {
       content: "";
       position: fixed;
@@ -30,7 +29,18 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      opacity: 0.88; /* 12% opacity overlay effect */
+      z-index: -2;
+    }
+
+    /* Overlay for darkening the background */
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.12); /* 12% opacity overlay */
       z-index: -1;
     }
 
@@ -68,8 +78,7 @@
       text-decoration: none;
       border-radius: 5px;
       font-size: 0.9em;
-      z-index: 1; /* Layered above the overlay */
-      opacity: 0.9;
+      z-index: 1;
     }
 
     .container {
@@ -96,7 +105,6 @@
       text-transform: uppercase;
       letter-spacing: 1.5px;
       text-shadow: 1px 1px 2px #333;
-      z-index: 2;
     }
 
     .start-btn:hover {
