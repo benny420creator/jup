@@ -19,7 +19,7 @@
             height: 100%;
             width: 100%;
             font-family: 'Comic Neue', cursive;
-            background-color: #121212;
+            background-color: #121212; /* Fallback color */
             color: #ffd700;
             overflow: hidden;
         }
@@ -32,9 +32,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('1.jpg'); /* Path to your image */
+            background-image: url('https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/1.jpg'); /* Replace with full GitHub URL */
             background-size: cover;
             background-position: center;
+            background-color: #333; /* Temporary color to confirm it's rendering */
             opacity: 0.12;
             z-index: -1;
         }
@@ -43,7 +44,7 @@
         .header {
             text-align: center;
             padding: 10px;
-            font-size: calc(2em + 1vw); /* Responsive font size */
+            font-size: calc(2em + 1vw);
             font-weight: bold;
             color: #ffd700;
             background-color: rgba(18, 18, 18, 0.9);
@@ -66,7 +67,7 @@
             left: 15px;
             text-decoration: none;
             color: #ffd700;
-            font-size: calc(1em + 0.5vw); /* Responsive font size */
+            font-size: calc(1em + 0.5vw);
             font-weight: bold;
             background-color: rgba(18, 18, 18, 0.7);
             padding: 10px 20px;
@@ -95,7 +96,7 @@
         /* Mobile Padding Adjustments */
         @media (max-width: 768px) {
             .content {
-                padding-top: 120px; /* Extra padding for mobile */
+                padding-top: 120px;
             }
         }
 
@@ -118,16 +119,24 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Debugging: Log to verify if the image and modal load correctly
+            console.log("Page loaded. Initializing Jupiter...");
+            
             window.Jupiter.init({
                 endpoint: "https://solana-mainnet.g.alchemy.com/v2/i9bOEa196Oj_Ljl6Y_uP9_YE9QGfSrGe",
                 mode: "modal",
             }).then(function() {
                 var modal = document.querySelector('.jupiter-terminal-modal');
                 if (modal) {
+                    console.log("Jupiter modal found. Adjusting position.");
                     document.body.appendChild(modal);
-                    modal.style.top = '100px'; // Adjust this to position the modal below the header
+                    modal.style.top = '100px';
+                } else {
+                    console.log("Error: Jupiter modal not found.");
                 }
                 window.Jupiter.open();
+            }).catch(function(error) {
+                console.error("Jupiter initialization error:", error);
             });
         });
     </script>
