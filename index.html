@@ -34,9 +34,9 @@
 
     header {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      padding: 15px 30px;
+      padding: 10px 0;
       background-color: rgba(0, 0, 0, 0.7);
     }
 
@@ -46,12 +46,15 @@
     }
 
     .home-btn {
+      position: absolute;
+      left: 20px;
+      top: 10px;
       background-color: #333;
       color: #fff;
-      padding: 10px 15px;
+      padding: 8px 12px;
       text-decoration: none;
       border-radius: 5px;
-      font-size: 1em;
+      font-size: 0.9em;
     }
 
     .container {
@@ -59,13 +62,23 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-direction: column;
       padding: 20px;
     }
 
-    #integrated-terminal {
-      border: 1px solid #444;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    .start-btn {
+      background-color: #333;
+      color: #fff;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .start-btn:hover {
+      background-color: #555;
     }
 
     footer {
@@ -76,6 +89,19 @@
       font-size: 0.9em;
     }
   </style>
+
+  <!-- Attach the loading script in your <head /> -->
+  <script src='https://terminal.jup.ag/main-v3.js'></script>
+  <script>
+    window.Jupiter.init({ 
+      endpoint: "https://solana-mainnet.g.alchemy.com/v2/i9bOEa196Oj_Ljl6Y_uP9_YE9QGfSrGe",
+      formProps: {
+        fixedOutputMint: true,
+        swapMode: "ExactIn",
+        initialOutputMint: "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+      },
+    });
+  </script>
 </head>
 <body>
   <header>
@@ -84,18 +110,7 @@
   </header>
 
   <div class="container">
-    <script src='https://terminal.jup.ag/main-v3.js'></script>
-    <div id="integrated-terminal" style="width: 400px; height: 568px;"></div>
-    <script>
-      window.Jupiter.init({
-        endpoint: "https://solana-mainnet.g.alchemy.com/v2/i9bOEa196Oj_Ljl6Y_uP9_YE9QGfSrGe",
-        formProps: {
-          fixedOutputMint: true,
-          swapMode: "ExactIn",
-          initialOutputMint: "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
-        },
-      });
-    </script>
+    <button class="start-btn">Start Terminal</button>
   </div>
 
   <footer>&copy; Benny420Creator Inc.</footer>
