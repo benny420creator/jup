@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>$OwlCat Swap</title>
   <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
   <style>
@@ -120,21 +119,9 @@
       font-size: 0.9em;
     }
   </style>
-
-  <!-- Attach the loading script in your <head /> -->
-  <script src='https://terminal.jup.ag/main-v3.js'></script>
-  <script>
-    function startSwapApp() {
-      window.Jupiter.init({ 
-        endpoint: "https://api.mainnet-beta.solana.com",
-        formProps: {
-          fixedOutputMint: true,
-          swapMode: "ExactIn",
-          initialOutputMint: "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
-        },
-      });
-    }
-  </script>
+  <!-- Include Wallet Adapter scripts -->
+  <script src="https://unpkg.com/@solana/wallet-adapter-base@latest/lib/index.umd.min.js"></script>
+  <script src="https://unpkg.com/@solana/wallet-adapter-wallets@latest/lib/index.umd.min.js"></script>
 </head>
 <body>
   <header>
@@ -143,9 +130,44 @@
   </header>
 
   <div class="container">
-    <button class="start-btn" onclick="startSwapApp()">Start Swap App</button>
+    <button class="start-btn">Start Swap App</button>
   </div>
 
   <footer>&copy; Benny420Creator Inc.</footer>
+
+  <!-- Jupiter Terminal Script -->
+  <script src='https://terminal.jup.ag/main-v3.js' defer></script>
+  <script defer>
+    async function startSwapApp() {
+      // Initialize the wallet adapter
+      const { PhantomWalletAdapter } = window.walletAdapterWallets;
+      const wallet = new PhantomWalletAdapter();
+
+      // Connect the wallet if not already connected
+      if (!wallet.connected) {
+        try {
+          await wallet.connect();
+        } catch (error) {
+          console.error('Wallet connection failed:', error);
+          return;
+        }
+      }
+
+      // Initialize Jupiter Terminal with the wallet
+      window.Jupiter.init({ 
+        endpoint: "https://api.mainnet-beta.solana.com",
+        cluster: 'mainnet-beta',
+        user: wallet, // Pass the wallet adapter to Jupiter
+        formProps: {
+          fixedOutputMint: true,
+          swapMode: "ExactIn",
+          initialOutputMint: "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+        },
+      });
+    }
+
+    // Attach event listener to the button
+    document.querySelector('.start-btn').addEventListener('click', startSwapApp);
+  </script>
 </body>
 </html>
