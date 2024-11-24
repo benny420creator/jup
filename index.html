@@ -5,6 +5,7 @@
   <title>$OwlCat Swap</title>
   <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
   <style>
+    /* Your existing styles */
     body, html {
       margin: 0;
       padding: 0;
@@ -119,9 +120,6 @@
       font-size: 0.9em;
     }
   </style>
-  <!-- Include Wallet Adapter scripts -->
-  <script src="https://unpkg.com/@solana/wallet-adapter-base@latest/lib/index.umd.min.js"></script>
-  <script src="https://unpkg.com/@solana/wallet-adapter-wallets@latest/lib/index.umd.min.js"></script>
 </head>
 <body>
   <header>
@@ -139,35 +137,37 @@
   <script src='https://terminal.jup.ag/main-v3.js' defer></script>
   <script defer>
     async function startSwapApp() {
-      // Initialize the wallet adapter
-      const { PhantomWalletAdapter } = window.walletAdapterWallets;
-      const wallet = new PhantomWalletAdapter();
-
-      // Connect the wallet if not already connected
-      if (!wallet.connected) {
+      // Check if Phantom wallet is installed
+      if (window.solana && window.solana.isPhantom) {
         try {
-          await wallet.connect();
-        } catch (error) {
-          console.error('Wallet connection failed:', error);
-          return;
-        }
-      }
+          // Connect to the wallet
+          const resp = await window.solana.connect();
+          console.log('Connected to wallet:', resp.publicKey.toString());
 
-      // Initialize Jupiter Terminal with the wallet
-      window.Jupiter.init({ 
-        endpoint: "https://api.mainnet-beta.solana.com",
-        cluster: 'mainnet-beta',
-        user: wallet, // Pass the wallet adapter to Jupiter
-        formProps: {
-          fixedOutputMint: true,
-          swapMode: "ExactIn",
-          initialOutputMint: "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
-        },
-      });
+          // Initialize Jupiter Terminal with the wallet
+          window.Jupiter.init({ 
+            endpoint: "https://api.mainnet-beta.solana.com",
+            cluster: 'mainnet-beta',
+            user: window.solana, // Pass the wallet to Jupiter
+            formProps: {
+              fixedOutputMint: true,
+              swapMode: "ExactIn",
+              initialOutputMint: "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+            },
+          });
+        } catch (err) {
+          console.error('Wallet connection failed:', err);
+        }
+      } else {
+        // Phantom is not installed
+        alert('Please install the Phantom Wallet extension to use this feature.');
+      }
     }
 
-    // Attach event listener to the button
-    document.querySelector('.start-btn').addEventListener('click', startSwapApp);
+    // Attach event listener to the button after the DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelector('.start-btn').addEventListener('click', startSwapApp);
+    });
   </script>
 </body>
 </html>
